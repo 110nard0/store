@@ -1,3 +1,4 @@
+import React from "react";
 import WaitListForm from "./comp/WaitListForm";
 import "../assets/styles/pages/waitlist-page.scss";
 
