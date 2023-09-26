@@ -1,0 +1,75 @@
+@use "./colours" as *;
+@use "./functions" as *;
+@use "./variables" as *;
+
+@mixin alignCenter {
+  display: flex;
+  align-items: center;
+}
+
+// BUTTONS
+
+@mixin btnPrimary {
+  cursor: pointer;
+  font-family: $ff-red-rose;
+  background: getClr($colors, "primary", 50);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: getClr($colors, "primary", 0);
+  }
+}
+
+@mixin btnNeutral {
+  cursor: pointer;
+  color: getClr($colors, "primary", 200);
+
+  &:hover {
+    a {
+      text-decoration: underline;
+      text-underline-offset: rem(4);
+    }
+    svg {
+      scale: 1.2;
+    }
+  }
+}
+
+@mixin inputGroup {
+  font-family: $ff-red-rose;
+  label {
+    display: block;
+
+    color: getClr($colors, "primary", 500);
+  }
+
+  input {
+    padding: 1rem 1.75rem;
+    margin-block: 0.5rem;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-family: inherit;
+    font-weight: 400;
+    color: getClr($colors, "primary", 100);
+    border: rem(1.5) solid getClr($colors, "primary", 700);
+
+    &::placeholder {
+      font-size: 1rem;
+      font-family: inherit;
+      color: getClr($colors, "primary", 700);
+    }
+  }
+
+  &.error {
+    input {
+      border-color: getClr($colors, "error", 500);
+    }
+
+    span {
+      @include alignCenter;
+      color: getClr($colors, "error", 500);
+      gap: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@use "./colours" as *;
+@use "./functions" as *;
+@use "./variables" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Red+Rose:wght@400;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $ff-be-viet;
+  background: getClr($colors, "primary", 900);
+  color: getClr($colors, "primary", 200);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-family: $ff-red-rose;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $ff-red-rose;
+}

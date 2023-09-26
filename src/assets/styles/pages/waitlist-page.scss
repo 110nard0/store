@@ -1,0 +1,147 @@
+@use "../index" as *;
+
+.landing_page {
+  display: grid;
+  min-height: 34rem;
+  margin-inline: auto;
+  margin-block: 5rem;
+  width: 90%;
+  max-width: 70.2rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 4.125rem auto;
+  row-gap: 2.5rem;
+
+  &-header {
+    grid-column: 1 /3;
+    border: rem(2) solid $bdr-clr;
+    padding-inline: 2.5rem;
+    @include alignCenter;
+    justify-content: space-between;
+
+    &-logo {
+      max-width: 12.9rem;
+      display: inline-block;
+    }
+
+    &-text {
+      font-size: 0.875rem;
+      color: getClr($colors, "primary", 100);
+    }
+  }
+
+  &-main {
+    grid-column: span 3;
+    border: rem(2) solid $bdr-clr;
+    width: 100%;
+    display: flex;
+
+    & > * {
+      flex: 1;
+    }
+
+    .landing_display {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      &-intro {
+        margin-bottom: auto;
+      }
+
+      &-heading {
+        color: getClr($colors, "primary", 400);
+        font-size: 1.75rem;
+        letter-spacing: -0.0525rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+
+        &__highlight {
+          color: getClr($colors, "primary", 50);
+        }
+      }
+
+      &-subheading {
+        font-size: 1.25rem;
+      }
+    }
+
+    .landing_form {
+      border-left: rem(2) solid $bdr-clr;
+      display: flex;
+      padding: 1.75rem;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+
+      p {
+        line-height: 1.625rem;
+      }
+
+      .input-group {
+        @include inputGroup;
+      }
+
+      &-btn {
+        padding: 0.75em 1.25em;
+        font-size: 1rem;
+        @include btnPrimary;
+      }
+    }
+  }
+
+  &-footer {
+    grid-column: 3/-1;
+    grid-row: 1/2;
+    border: rem(2) solid $bdr-clr;
+    border-left: none;
+    @include alignCenter;
+    justify-content: center;
+
+    .footer-link {
+      @include alignCenter;
+      gap: 0.5em;
+      @include btnNeutral;
+    }
+  }
+
+  @include mobile {
+    margin-block: 3rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4.125rem auto 4.125rem;
+    row-gap: 1.75rem;
+
+    &-header {
+      grid-column: unset;
+      padding-inline: 1rem;
+
+      &-logo svg {
+        max-width: 6.5rem;
+      }
+    }
+
+    &-main {
+      grid-column: unset;
+      flex-direction: column;
+
+      .landing_display {
+        padding: 1.75rem;
+        &-intro {
+          margin-bottom: 5rem;
+        }
+      }
+
+      .landing_form {
+        border-left: none;
+        border-top: rem(2) solid $bdr-clr;
+
+        p {
+          font-size: 0.875rem;
+        }
+      }
+    }
+    &-footer {
+      grid-column: unset;
+      border: none;
+      grid-row: unset;
+    }
+  }
+}

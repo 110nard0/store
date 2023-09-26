@@ -1,0 +1,9 @@
+@use "./colours" as *;
+@use "./functions" as *;
+
+$bdr-clr: getClr($colors, "primary", 0);
+
+// ------------FONTS-------------------
+
+$ff-red-rose: "Red Rose", cursive;
+$ff-be-viet: "Be Vietnam Pro", sans-serif;
