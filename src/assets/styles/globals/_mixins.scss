@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-// BUTTONS
+// ------BUTTONS-------------------------------
 
 @mixin btnPrimary {
   cursor: pointer;
@@ -35,6 +35,8 @@
   }
 }
 
+// -------INPUTS--------------------------------
+
 @mixin inputGroup {
   font-family: $ff-red-rose;
   label {
@@ -58,6 +60,10 @@
       font-size: 1rem;
       font-family: inherit;
       color: getClr($colors, "primary", 700);
+    }
+
+    &:focus {
+      border-color: getClr($colors, "primary", 300);
     }
   }
 

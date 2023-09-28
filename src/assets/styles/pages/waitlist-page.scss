@@ -33,6 +33,7 @@
     grid-column: span 3;
     border: rem(2) solid $bdr-clr;
     width: 100%;
+    height: 100%;
     display: flex;
 
     & > * {
@@ -66,24 +67,76 @@
 
     .landing_form {
       border-left: rem(2) solid $bdr-clr;
-      display: flex;
-      padding: 1.75rem;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 2rem;
 
-      p {
-        line-height: 1.625rem;
+      .register_form {
+        display: flex;
+        margin: 1.75rem;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+
+        p {
+          line-height: 1.625rem;
+        }
+
+        .input-group {
+          @include inputGroup;
+        }
+
+        .landing_form-btn {
+          padding: 0.75em 1.25em;
+          font-size: 1rem;
+          @include btnPrimary;
+        }
       }
 
-      .input-group {
-        @include inputGroup;
-      }
+      .success_container {
+        height: 22rem;
+        margin: 2.5rem 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: 0.75rem;
 
-      &-btn {
-        padding: 0.75em 1.25em;
-        font-size: 1rem;
-        @include btnPrimary;
+        .success_icon {
+          display: flex;
+          padding: 0.75em;
+          justify-content: center;
+          align-items: center;
+          border: rem(1.5) solid getClr($colors, "primary", 700);
+          color: getClr($colors, "primary", 0);
+          border-radius: 25rem;
+          background: getClr($colors, "primary", 800);
+          animation: pop 0.8s ease-in-out;
+
+          svg {
+            font-size: 2.5em;
+          }
+
+          @keyframes pop {
+            80% {
+              transform: scale(1.3);
+              background: getClr($colors, "error", 500);
+              color: getClr($colors, "error", 500);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        }
+
+        .success_title {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: getClr($colors, "primary", 0);
+        }
+
+        .success_subtitle {
+          font-weight: 400;
+          line-height: 1.625rem;
+          font-size: 0.9rem;
+        }
       }
     }
   }
@@ -133,8 +186,21 @@
         border-left: none;
         border-top: rem(2) solid $bdr-clr;
 
-        p {
-          font-size: 0.875rem;
+        .register_form {
+          p {
+            font-size: 0.875rem;
+          }
+        }
+
+        .success_container {
+          height: fit-content;
+          margin: 2.5rem 1.25rem;
+          align-self: stretch;
+          gap: 0.75rem;
+
+          .success_title {
+            font-size: 1.25rem;
+          }
         }
       }
     }
