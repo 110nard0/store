@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../assets/styles/pages/Reset.scss";
-import { BsEyeSlash, BsEye } from "react-icons/bs";
+import { BsEyeSlash, BsEye, BsCheckCircle } from "react-icons/bs";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,15 +11,19 @@ import { useNavigate } from "react-router";
 const Reset = () => {
   // -------------------------NAVIGATION-----------------------------------------
 
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
-  // -------------------------SHOW AND HIDE PASSWORD-----------------------------------------
-  const [showPassword, setShowPassword] = useState(false);
+  // -------------------------SHOW AND HIDE STATES-----------------------------------------
+  const [showPassword, setShowPassword] = useState({
+    password: false,
+    confirmPassword: false,
+  });
+
+  const [showSucess, setShowSucess] = useState(false);
 
   // -------------------------SUBMISSION OF THE FORM DATA-----------------------------------------
   const submitHandler = (formData) => {
-    // console.log(formData);
-    navigate("/");
+    console.log(formData);
   };
 
   // -------------------------FORM VALIDATION-----------------------------------------
@@ -36,78 +40,107 @@ const Reset = () => {
     },
   });
 
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      setShowSucess(true);
+      reset();
+
+      //   setTimeout(() => {
+      //     setShowSucess(false);
+      //   }, 3000);
+    }
+  }, [isSubmitSuccessful]);
+
   // ================================================================================================
   return (
     <section className="reset-page">
-      {/* -------------------LEFT CONTAINER---------------------------- */}
-      <div className="left-container">
-        <div className="left-container_top">
-          <p className="left-container_top__heading">Reset your password</p>
-          <p className="left-container_top__sub-heading">
-            Fill the spaces provided to reset or change your password.
-          </p>
+      {showSucess && (
+        <div className="success-container">
+          <BsCheckCircle />
+          <p>Password reset successful</p>
         </div>
-      </div>
-
-      {/* -------------------RIGHT CONTAINER---------------------------- */}
-      <div className="right-container">
-        <form
-          method="post"
-          className="right-container_form"
-          onSubmit={handleSubmit(submitHandler)}
-        >
-          <div className={`input-group ${errors.password && "error"}`}>
-            <label htmlFor="password">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              autoComplete="off"
-              placeholder="Enter your email password"
-              {...register("password")}
-            />
-            <span
-              onClick={() => setShowPassword(!showPassword)}
-              className="eye-icon"
-            >
-              {showPassword ? <BsEyeSlash /> : <BsEye />}
-            </span>
-
-            {errors.password && (
-              <span>
-                <BiErrorCircle /> {errors.password?.message}
-              </span>
-            )}
+      )}
+      <div className="reset-page_container">
+        {/* -------------------LEFT CONTAINER---------------------------- */}
+        <div className="left-container">
+          <div className="left-container_top">
+            <p className="left-container_top__heading">Reset your password</p>
+            <p className="left-container_top__sub-heading">
+              Fill the spaces provided to reset or change your password.
+            </p>
           </div>
+        </div>
 
-          <div className={`input-group ${errors.password && "error"}`}>
-            <label htmlFor="confirmPassword">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="confirmPassword"
-              name="confirmPassword"
-              autoComplete="off"
-              placeholder="Enter your email password"
-              {...register("confirmPassword")}
-            />
-            <span
-              onClick={() => setShowPassword(!showPassword)}
-              className="eye-icon"
-            >
-              {showPassword ? <BsEyeSlash /> : <BsEye />}
-            </span>
-
-            {errors.password && (
-              <span>
-                <BiErrorCircle /> {errors.confirmPassword?.message}
+        {/* -------------------RIGHT CONTAINER---------------------------- */}
+        <div className="right-container">
+          <form
+            method="post"
+            className="right-container_form"
+            onSubmit={handleSubmit(submitHandler)}
+          >
+            <div className={`input-group ${errors.password && "error"}`}>
+              <label htmlFor="password">Password</label>
+              <input
+                type={showPassword.password ? "text" : "password"}
+                id="password"
+                name="password"
+                autoComplete="off"
+                placeholder="Enter your email password"
+                {...register("password")}
+              />
+              <span
+                onClick={() =>
+                  setShowPassword((prev) => ({
+                    ...prev,
+                    password: !showPassword.password,
+                  }))
+                }
+                className="eye-icon"
+              >
+                {showPassword.password ? <BsEyeSlash /> : <BsEye />}
               </span>
-            )}
-          </div>
 
-          <button type="submit" className="reset_btn">
-            <a href="/reset">Reset password</a>
-          </button>
-        </form>
+              {errors.password && (
+                <span>
+                  <BiErrorCircle /> {errors.password?.message}
+                </span>
+              )}
+            </div>
+
+            <div className={`input-group ${errors.confirmPassword && "error"}`}>
+              <label htmlFor="confirmPassword">Password</label>
+              <input
+                type={showPassword.confirmPassword ? "text" : "password"}
+                id="confirmPassword"
+                name="confirmPassword"
+                autoComplete="off"
+                placeholder="Enter your email password"
+                {...register("confirmPassword")}
+              />
+              <span
+                onClick={() =>
+                  setShowPassword((prev) => ({
+                    ...prev,
+                    confirmPassword: !showPassword.confirmPassword,
+                  }))
+                }
+                className="eye-icon"
+              >
+                {showPassword.confirmPassword ? <BsEyeSlash /> : <BsEye />}
+              </span>
+
+              {errors.confirmPassword && (
+                <span>
+                  <BiErrorCircle /> {errors.confirmPassword?.message}
+                </span>
+              )}
+            </div>
+
+            <button type="submit" className="reset_btn">
+              Reset password
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );

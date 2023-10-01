@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginShema } from "../schemas";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   // -------------------------NAVIGATION-----------------------------------------
@@ -104,7 +105,7 @@ const LoginPage = () => {
           </div>
 
           <button type="button" className="forgot_btn">
-            <a href="/reset">Forget password?</a>
+            <Link to="/reset">Forget password?</Link>
           </button>
 
           <div className="right-container_form__submit--btns">
