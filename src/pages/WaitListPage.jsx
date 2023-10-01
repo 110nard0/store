@@ -29,13 +29,15 @@ const WaitListPage = () => {
             We are an exclusive affair of the collective genius.
           </h6>
         </div>
-        <WaitListForm />
+        <div className="waitlist_form">
+          <WaitListForm />
+        </div>
       </main>
       <footer className="waitlist_page-footer">
-        <div className="footer-link">
+        <button type="button" className="footer-link">
           <a href="/">Follow us on Instagram</a>
           <BsArrowUpRight />
-        </div>
+        </button>
       </footer>
     </section>
   );

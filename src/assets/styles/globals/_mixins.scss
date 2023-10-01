@@ -1,6 +1,7 @@
 @use "./colours" as *;
 @use "./functions" as *;
 @use "./variables" as *;
+@use "./breakpoints" as *;
 
 @mixin alignCenter {
   display: flex;
@@ -12,26 +13,62 @@
 @mixin btnPrimary {
   cursor: pointer;
   font-family: $ff-red-rose;
+  padding: 0.75em 1.25em;
+  font-size: 1rem;
   background: getClr($colors, "primary", 50);
   transition: all 0.3s ease-in-out;
+  outline: none;
+  border: none;
+  user-select: none;
 
   &:hover {
     background: getClr($colors, "primary", 0);
+  }
+}
+@mixin btnSecondary {
+  cursor: pointer;
+  font-family: $ff-red-rose;
+  padding: 0.75em 1.25em;
+  color: getClr($colors, "primary", 50);
+  display: inline-flex;
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background: getClr($colors, "primary", 900);
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  border: rem(1.5) solid getClr($colors, "primary", 50);
+  user-select: none;
+
+  &:hover {
+    background: getClr($colors, "primary", 800);
   }
 }
 
 @mixin btnNeutral {
   cursor: pointer;
   color: getClr($colors, "primary", 200);
+  display: inline-flex;
+  gap: 0.5em;
+  align-items: center;
+  outline: none;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  user-select: none;
 
   &:hover {
+    color: getClr($colors, "primary", 0);
     a {
       text-decoration: underline;
+      color: inherit;
       text-underline-offset: rem(4);
     }
-    svg {
-      scale: 1.2;
-    }
+  }
+
+  @include mobile {
+    font-size: 0.875rem;
   }
 }
 
@@ -39,6 +76,7 @@
 
 @mixin inputGroup {
   font-family: $ff-red-rose;
+  position: relative;
   label {
     display: block;
 
@@ -53,6 +91,7 @@
     width: 100%;
     font-family: inherit;
     font-weight: 400;
+    font-size: 1rem;
     color: getClr($colors, "primary", 100);
     border: rem(1.5) solid getClr($colors, "primary", 700);
 
@@ -65,6 +104,27 @@
     &:focus {
       border-color: getClr($colors, "primary", 300);
     }
+
+    @include mobile {
+      font-size: 0.875rem;
+
+      &::placeholder {
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  .eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 1.75rem;
+    font-size: 1.5rem;
+    color: getClr($colors, "primary", 300);
+    cursor: pointer;
+
+    @include mobile {
+      right: 1.25rem;
+    }
   }
 
   &.error {
@@ -72,10 +132,49 @@
       border-color: getClr($colors, "error", 500);
     }
 
-    span {
+    .eye-icon {
+      top: 40%;
+    }
+
+    span:not(.eye-icon) {
       @include alignCenter;
       color: getClr($colors, "error", 500);
       gap: 0.5rem;
+    }
+  }
+}
+
+// -------GRID CONTAINER--------------------------------
+
+@mixin twoGridContainer {
+  border: rem(2) solid getClr($colors, "primary", 200);
+  max-width: 80rem;
+  width: 90%;
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+
+  & > div:first-of-type {
+    border-right: rem(2) solid getClr($colors, "primary", 200);
+    padding: 2.5rem;
+  }
+
+  & > div:last-of-type {
+    padding: 1.75rem;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+
+    & > div:first-of-type {
+      border-right: none;
+      border-bottom: rem(2) solid getClr($colors, "primary", 200);
+      padding: 1.25rem;
+    }
+
+    & > div:last-of-type {
+      padding: 1.75rem 1.25rem;
     }
   }
 }

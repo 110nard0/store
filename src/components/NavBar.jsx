@@ -6,6 +6,8 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import "../assets/styles/component/NavBar.scss";
 import CustomLogo from "./CustomLogo";
 import useClickOutiside from "../hooks/use-clickOutside";
+import HamburgerSVG from "./HamburgerSVG";
+import CloseSVG from "./CloseSVG";
 
 const user = false;
 
@@ -88,7 +90,7 @@ const NavBar = () => {
           className="navbar-nav_menu-icon"
           onClick={() => setShowMenu(!showMenu)}
         >
-          <div className="hamburger-menu">Menu</div>
+          {showMenu ? <CloseSVG /> : <HamburgerSVG />}
         </div>
       </nav>
       <div

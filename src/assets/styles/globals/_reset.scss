@@ -43,6 +43,6 @@ img {
   display: block;
 }
 
-section:not(.landing-page) {
+section:not(.landing-page, .waitlist_page) {
   margin-block: 8.7rem 5.69rem;
 }

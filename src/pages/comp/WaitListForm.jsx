@@ -7,14 +7,17 @@ import { BiErrorCircle } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
 
 const WaitListForm = () => {
+  // -------------------------STATE FOR THE SUCCESS CONTENT-----------------------------------------
   const [showSuccess, setShowSuccess] = useState(false);
 
+  // -------------------------SUBMISSION OF THE FORM DATA-----------------------------------------
   const onSubmit = (formData) => {
     console.log(formData);
   };
 
   // const isSubmitSuccessful = true;
 
+  // -------------------------FORM VALIDATION-----------------------------------------
   const {
     register,
     handleSubmit,
@@ -28,6 +31,8 @@ const WaitListForm = () => {
     },
   });
 
+  // -------------------------DISPLAY THE SUCCESS CONTENT AFTER SUBMITTING-----------------------------------------
+
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
@@ -35,13 +40,14 @@ const WaitListForm = () => {
     }
   }, [isSubmitSuccessful]);
 
+  // ================================================================================================
   return (
     <form
-      className="waitlist_form"
       name="access-form"
       aria-label="access form"
       onSubmit={handleSubmit(onSubmit)}
     >
+      {/* ================================================================================================ */}
       {!showSuccess && (
         <div className="register_form">
           <h6>
@@ -88,6 +94,8 @@ const WaitListForm = () => {
         </div>
       )}
 
+      {/* ================================================================================================ */}
+
       {showSuccess && (
         <div className="success_container">
           <div className="success_icon">
@@ -95,10 +103,10 @@ const WaitListForm = () => {
           </div>
 
           <h3 className="success_title">You are on the list</h3>
-          <p className="success_subtitle">
+          <h6 className="success_subtitle">
             Thank you for joining us. You will receive your password on launch
             day.
-          </p>
+          </h6>
         </div>
       )}
     </form>
