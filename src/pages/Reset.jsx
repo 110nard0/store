@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-import "../assets/styles/pages/LoginPage.scss";
-import { BsArrowUpRight, BsEye, BsGoogle, BsEyeSlash } from "react-icons/bs";
+import "../assets/styles/pages/Reset.scss";
+import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginShema } from "../schemas";
+import { resetSchema } from "../schemas";
 import { useNavigate } from "react-router";
 
-const LoginPage = () => {
+const Reset = () => {
   // -------------------------NAVIGATION-----------------------------------------
 
   const navigate = useNavigate();
@@ -29,28 +29,22 @@ const LoginPage = () => {
     formState: { errors, isSubmitSuccessful },
     reset,
   } = useForm({
-    resolver: zodResolver(loginShema),
+    resolver: zodResolver(resetSchema),
     defaultValues: {
-      email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
   // ================================================================================================
   return (
-    <section className="login-page">
+    <section className="reset-page">
       {/* -------------------LEFT CONTAINER---------------------------- */}
       <div className="left-container">
         <div className="left-container_top">
-          <p className="left-container_top__heading">Log into your account</p>
-        </div>
-        <div className="left-container_bottom">
-          <p>
-            Don't have an account?
-            <button type="button" className="register_link">
-              <a href="/register">Create an account </a>
-              <BsArrowUpRight />
-            </button>
+          <p className="left-container_top__heading">Reset your password</p>
+          <p className="left-container_top__sub-heading">
+            Fill the spaces provided to reset or change your password.
           </p>
         </div>
       </div>
@@ -62,23 +56,6 @@ const LoginPage = () => {
           className="right-container_form"
           onSubmit={handleSubmit(submitHandler)}
         >
-          <div className={`input-group ${errors.email && "error"}`}>
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              autoComplete="on"
-              placeholder="Enter your email address"
-              {...register("email")}
-            />
-            {errors.email && (
-              <span>
-                <BiErrorCircle /> {errors.email?.message}
-              </span>
-            )}
-          </div>
-
           <div className={`input-group ${errors.password && "error"}`}>
             <label htmlFor="password">Password</label>
             <input
@@ -103,22 +80,37 @@ const LoginPage = () => {
             )}
           </div>
 
-          <button type="button" className="forgot_btn">
-            <a href="/reset">Forget password?</a>
-          </button>
+          <div className={`input-group ${errors.password && "error"}`}>
+            <label htmlFor="confirmPassword">Password</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="confirmPassword"
+              name="confirmPassword"
+              autoComplete="off"
+              placeholder="Enter your email password"
+              {...register("confirmPassword")}
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="eye-icon"
+            >
+              {showPassword ? <BsEyeSlash /> : <BsEye />}
+            </span>
 
-          <div className="right-container_form__submit--btns">
-            <button type="submit" className="login_btn">
-              Log in
-            </button>
-            <button type="button" className="google_btn">
-              <BsGoogle /> <span>Sign in with Google</span>
-            </button>
+            {errors.password && (
+              <span>
+                <BiErrorCircle /> {errors.confirmPassword?.message}
+              </span>
+            )}
           </div>
+
+          <button type="submit" className="reset_btn">
+            <a href="/reset">Reset password</a>
+          </button>
         </form>
       </div>
     </section>
   );
 };
 
-export default LoginPage;
+export default Reset;

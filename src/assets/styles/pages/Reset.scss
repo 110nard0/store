@@ -1,0 +1,60 @@
+@use "../index.scss" as *;
+
+.reset-page {
+  @include twoGridContainer;
+
+  .left-container {
+    display: flex;
+    flex-direction: column;
+
+    &_top {
+      &__heading {
+        font-size: 1.75rem;
+        color: getClr($colors, "primary", 50);
+        margin-bottom: 0.5rem;
+      }
+
+      &__sub-heading {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .right-container {
+    &_form {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      row-gap: 2rem;
+      .input-group {
+        @include inputGroup;
+      }
+
+      .reset_btn {
+        @include btnPrimary;
+      }
+    }
+  }
+
+  @include mobile {
+    .left-container {
+      height: 10.5rem;
+
+      &_top {
+        &__heading {
+          font-size: 1.5rem;
+        }
+
+        &__sub-heading {
+          font-size: 1rem;
+        }
+      }
+      &_bottom {
+        .register_link {
+          margin-left: unset;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+}
