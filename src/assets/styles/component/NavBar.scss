@@ -3,14 +3,18 @@
 .navbar {
   max-width: 80rem;
   width: 90%;
-  margin-top: 3rem;
-  margin-inline: auto;
   background: getClr($colors, "primary", 900);
   border: rem(1.5) solid getClr($colors, "primary", 200);
+  position: fixed;
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 
   &-nav {
     @include alignCenter;
     padding: 1.25rem 2.5rem;
+    width: 100%;
     justify-content: space-between;
     position: relative;
 
@@ -20,30 +24,24 @@
     }
 
     &_logo {
-      position: absolute;
       max-width: 14.7455rem;
-
-      left: 50%;
-      transform: translateX(-50%);
-
       svg {
         width: 100%;
       }
     }
 
-    &_list {
+    &_links {
       @include alignCenter;
-      justify-content: space-between;
-      width: 100%;
+      column-gap: 4rem;
+      max-width: 29.25rem;
 
-      ul {
-        @include alignCenter;
-        width: 21.25rem;
-        justify-content: space-between;
+      > li {
+        @include btnNeutral;
       }
     }
 
-    > a:not(.navbar-nav_logo) {
+    > a:not(.navbar-nav_logo),
+    .navbar-nav_menu-icon {
       display: none;
     }
 
@@ -51,18 +49,34 @@
       padding: 0.75rem 1rem;
 
       &_logo {
-        position: relative;
-        display: inline-block;
-        left: 20%;
-        width: 8.37rem;
+        max-width: 7.4rem;
+        svg {
+          width: 100%;
+        }
       }
 
-      &_list {
+      &_links {
         position: absolute;
-        display: none;
+        width: 100%;
+        top: calc(100% + 1rem);
+        left: 0;
+        flex-direction: column;
+        row-gap: 2.5rem;
+        padding: 2.5rem;
+        background: getClr($colors, "primary", 900);
+        border: rem(1.5) solid getClr($colors, "primary", 200);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+
+        &.show-menu {
+          opacity: 1;
+          visibility: visible;
+        }
       }
 
-      > a:not(.navbar-nav_logo) {
+      > a:not(.navbar-nav_logo),
+      .navbar-nav_menu-icon {
         display: inline-block;
       }
 
@@ -70,6 +84,24 @@
         margin-left: auto;
         margin-right: 1.75rem;
       }
+    }
+  }
+
+  .backdrop {
+    width: 250vw;
+    height: 250vh;
+    position: fixed;
+    background: getClr($colors, "primary", 900);
+    top: -100%;
+    left: -20%;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+
+    &.show-backdrop {
+      opacity: 0.8;
+      visibility: visible;
     }
   }
 }

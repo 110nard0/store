@@ -1,0 +1,11 @@
+@use "../index.scss" as *;
+
+.link {
+  cursor: pointer;
+  color: getClr($colors, "primary", 200);
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: rem(4);
+  }
+}

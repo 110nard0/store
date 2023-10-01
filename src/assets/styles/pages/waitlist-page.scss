@@ -1,6 +1,6 @@
 @use "../index" as *;
 
-.landing_page {
+.waitlist_page {
   display: grid;
   min-height: 34rem;
   margin-inline: auto;
@@ -26,6 +26,7 @@
     &-text {
       font-size: 0.875rem;
       color: getClr($colors, "primary", 100);
+      font-weight: 400;
     }
   }
 
@@ -40,7 +41,7 @@
       flex: 1;
     }
 
-    .landing_display {
+    .waitlist_display {
       padding: 2.5rem;
       display: flex;
       flex-direction: column;
@@ -62,10 +63,12 @@
 
       &-subheading {
         font-size: 1.25rem;
+        color: getClr($colors, "primary", 50);
+        font-weight: 400;
       }
     }
 
-    .landing_form {
+    .waitlist_form {
       border-left: rem(2) solid $bdr-clr;
 
       .register_form {
@@ -75,15 +78,17 @@
         justify-content: space-between;
         gap: 2rem;
 
-        p {
+        h6 {
           line-height: 1.625rem;
+          font-size: 0.95rem;
+          font-weight: 400;
         }
 
         .input-group {
           @include inputGroup;
         }
 
-        .landing_form-btn {
+        .waitlist_form-btn {
           padding: 0.75em 1.25em;
           font-size: 1rem;
           @include btnPrimary;
@@ -152,6 +157,7 @@
     .footer-link {
       @include alignCenter;
       gap: 0.5em;
+
       @include btnNeutral;
     }
   }
@@ -175,14 +181,14 @@
       grid-column: unset;
       flex-direction: column;
 
-      .landing_display {
+      .waitlist_display {
         padding: 1.75rem;
         &-intro {
           margin-bottom: 5rem;
         }
       }
 
-      .landing_form {
+      .waitlist_form {
         border-left: none;
         border-top: rem(2) solid $bdr-clr;
 

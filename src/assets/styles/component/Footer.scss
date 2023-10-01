@@ -1,0 +1,91 @@
+@use "../index.scss" as *;
+
+.footer {
+  display: flex;
+  max-width: 80.125rem;
+  width: 90%;
+  gap: 6.5625rem;
+  margin-inline: auto;
+  margin-bottom: 2.69rem;
+  border-top: rem(1) solid getClr($colors, "primary", 600);
+  padding-top: 5.5rem;
+
+  &_detail {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    flex: 1;
+    font-family: $ff-red-rose;
+    color: getClr($colors, "primary", 0);
+
+    .logo {
+      display: block;
+      width: 9.2rem;
+      svg {
+        width: 100%;
+      }
+    }
+  }
+
+  &_links {
+    flex: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+
+    * a {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer_title {
+      color: getClr($colors, "primary", 0);
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.5rem;
+      letter-spacing: 0.04375rem;
+    }
+
+    > div {
+      width: 14rem;
+    }
+  }
+
+  @include mobile {
+    flex-direction: column-reverse;
+    border-top: none;
+    margin-bottom: 2.5rem;
+    padding-top: 2.5rem;
+    gap: 1.25rem;
+
+    &_detail {
+      border-top: rem(1) solid getClr($colors, "primary", 600);
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-block: 1.25rem 2.5rem;
+      margin-top: 1.25rem;
+
+      .logo {
+        display: block;
+        width: 6.45rem;
+        svg {
+          width: 100%;
+        }
+      }
+    }
+
+    &_links {
+      gap: 2.5rem 1rem;
+
+      * a {
+        font-size: 0.875rem;
+      }
+
+      > div {
+        width: 10rem;
+      }
+    }
+  }
+}

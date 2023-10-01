@@ -37,17 +37,17 @@ const WaitListForm = () => {
 
   return (
     <form
-      className="landing_form"
+      className="waitlist_form"
       name="access-form"
       aria-label="access form"
       onSubmit={handleSubmit(onSubmit)}
     >
       {!showSuccess && (
         <div className="register_form">
-          <p>
+          <h6>
             To gain access to our clothing on launch day, fill the form to
             receive your password.
-          </p>
+          </h6>
           <div className={`input-group ${errors.name && "error"}`}>
             <label htmlFor="name">Name</label>
             <input
@@ -82,7 +82,7 @@ const WaitListForm = () => {
             )}
           </div>
 
-          <button className="landing_form-btn" type="submit">
+          <button className="waitlist_form-btn" type="submit">
             Get Password
           </button>
         </div>
