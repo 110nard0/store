@@ -194,8 +194,59 @@
     }
   }
 }
+@mixin checkBoxGroup {
+  user-select: none;
+  label {
+    display: inline-block;
+    position: relative;
+    padding-inline-start: rem(35);
+    cursor: pointer;
+    color: getClr($colors, "primary", 0);
 
-// -------GRID CONTAINER--------------------------------
+    input {
+      display: none;
+
+      &:checked ~ span {
+        border-color: getClr($colors, "primary", 50);
+        &::after {
+          transform: translate(-50%, -60%) scale(1) rotate(45deg);
+        }
+      }
+    }
+
+    span {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: rem(2) solid getClr($colors, "primary", 300);
+      border-radius: rem(5);
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: border-color 0.3s ease;
+
+      &::after {
+        content: "";
+        width: 0.3rem;
+        height: 0.9rem;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border: solid getClr($colors, "primary", 50);
+        border-width: 0 rem(4) rem(4) 0;
+        transform: translate(-50%, -50%) scale(0);
+      }
+    }
+
+    &:hover span {
+      border-color: getClr($colors, "primary", 50);
+    }
+  }
+}
+
+// -------CONTAINER--------------------------------
 
 @mixin twoGridContainer {
   border: rem(2) solid getClr($colors, "primary", 200);
@@ -228,4 +279,10 @@
       padding: 1.75rem 1.25rem;
     }
   }
+}
+
+@mixin container {
+  max-width: 80rem;
+  width: 90%;
+  margin-inline: auto;
 }

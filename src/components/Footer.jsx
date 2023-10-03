@@ -26,14 +26,14 @@ const Footer = () => {
         <div>
           <h5 className="footer_title">COMPANY</h5>
           <LinkBtn to="/" title="FAQs" />
-          <LinkBtn to="/" title="About us" />
+          <LinkBtn to="/about" title="About us" />
           <LinkBtn to="/" title="Contact us" />
         </div>
         <div>
           <h5 className="footer_title">FEATURES</h5>
-          <LinkBtn to="/" title="Size guide" />
-          <LinkBtn to="/" title="Buy now" />
-          <LinkBtn to="/" title="Social impact" />
+          <LinkBtn to="/features" title="Size guide" />
+          <LinkBtn to="/features" title="Buy now" />
+          <LinkBtn to="/features" title="Social impact" />
         </div>
         <div>
           <h5 className="footer_title">SOCIALS</h5>

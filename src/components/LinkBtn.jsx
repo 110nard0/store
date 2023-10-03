@@ -5,7 +5,7 @@ import "../assets/styles/component/LinkBtn.scss";
 
 const LinkBtn = ({ to, title }) => {
   return (
-    <Link href={to} className="link">
+    <Link to={to} className="link">
       {title}
     </Link>
   );

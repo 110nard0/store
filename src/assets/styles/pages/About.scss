@@ -1,0 +1,60 @@
+@use "../index.scss" as *;
+
+.about {
+  @include container;
+  border: rem(1) solid getClr($colors, "primary", 50);
+
+  .image_container {
+    width: 100%;
+    height: 29.125rem;
+    background: getClr($colors, "primary", 300);
+  }
+
+  .text_container {
+    padding: 5.5rem 6.9rem;
+    .heading {
+      font-size: 1.75rem;
+      color: getClr($colors, "primary", 0);
+      margin-bottom: 2.5rem;
+    }
+
+    .description {
+      max-width: 52.6rem;
+    }
+  }
+  .footer_images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+    margin-inline: 6.9rem;
+    margin-bottom: 5.5rem;
+
+    .img {
+      width: 11.625rem;
+      height: 16.4375rem;
+      background: getClr($colors, "primary", 300);
+    }
+  }
+
+  @include mobile {
+    .image_container {
+      height: 18.8rem;
+    }
+    .text_container {
+      padding: 1.25rem;
+      .heading {
+        margin-bottom: 1.25rem;
+      }
+    }
+    .footer_images {
+      margin-inline: 0;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      .img {
+        width: 11rem;
+        height: 16.4375rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+@use "../index.scss" as *;
+
+.features {
+  @include container;
+
+  .social-impact_container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border: rem(1) solid getClr($colors, "primary", 50);
+
+    .image_container {
+      background: getClr($colors, "primary", 300);
+    }
+    .text_container {
+      padding: 2.5rem;
+      .heading {
+        font-size: 1.75rem;
+        color: getClr($colors, "primary", 0);
+        margin-bottom: 2.5rem;
+      }
+      .paragraph {
+        line-height: 1.625rem;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        list-style: disc;
+        margin-left: 30px;
+        li {
+          margin-bottom: rem(5);
+        }
+      }
+    }
+  }
+
+  .sizing_container {
+    border: rem(1) solid getClr($colors, "primary", 50);
+    padding: 2.5rem;
+    margin-block: 3rem;
+  }
+
+  .sharing_container {
+    @extend .social-impact_container;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  @include mobile {
+    .social-impact_container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+
+      .text_container {
+        padding: 1.5rem;
+        .heading {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .sharing_container {
+      .image_container {
+        order: -1;
+      }
+    }
+  }
+}

@@ -53,7 +53,7 @@ const NavBar = () => {
 
         <ul className={`navbar-nav_links ${showMenu && "show-menu"}`}>
           <li>
-            <Link to="/">Features</Link>
+            <Link to="/features">Features</Link>
           </li>
 
           <li>

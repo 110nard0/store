@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router";
+
 import ProtectedRoutes from "./protectedRoutes";
 import WaitListPage from "../pages/WaitListPage";
 import LandingPage from "../pages/LandingPage";
@@ -11,6 +12,8 @@ import ForgotPassword from "../pages/ForgotPassword";
 import ErrorPage from "../pages/ErrorPage";
 import SingleProductPage from "../pages/SingleProductPage";
 import ProductsPage from "../pages/ProductsPage";
+import FeaturesPage from "../pages/FeaturesPage";
+import About from "../pages/About";
 
 const Routing = () => {
   return (
@@ -33,6 +36,8 @@ const Routing = () => {
       <Route element={<ProtectedRoutes />}>
         <Route path="/" element={<LandingPage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/about" element={<About />} />
       </Route>
     </Routes>
   );
