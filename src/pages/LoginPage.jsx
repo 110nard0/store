@@ -5,7 +5,7 @@ import { BsArrowUpRight, BsEye, BsGoogle, BsEyeSlash } from "react-icons/bs";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginShema } from "../schemas";
+import { loginSchema } from "../schemas";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ const LoginPage = () => {
     formState: { errors, isSubmitSuccessful },
     reset,
   } = useForm({
-    resolver: zodResolver(loginShema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -49,7 +49,7 @@ const LoginPage = () => {
           <p>
             Don't have an account?
             <button type="button" className="register_link">
-              <a href="/register">Create an account </a>
+              <Link to="/register">Create an account </Link>
               <BsArrowUpRight />
             </button>
           </p>
@@ -105,7 +105,7 @@ const LoginPage = () => {
           </div>
 
           <button type="button" className="forgot_btn">
-            <Link to="/reset">Forget password?</Link>
+            <Link to="/forgot-password">Forget password?</Link>
           </button>
 
           <div className="right-container_form__submit--btns">

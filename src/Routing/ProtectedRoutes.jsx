@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router";
 import Layout from "./Layout";
+import Footer from "../components/Footer";
 
 const getUser = true;
 

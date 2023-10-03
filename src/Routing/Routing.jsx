@@ -7,6 +7,7 @@ import Layout from "./Layout";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import Reset from "../pages/Reset";
+import ForgotPassword from "../pages/ForgotPassword";
 
 const Routing = () => {
   return (
@@ -15,6 +16,7 @@ const Routing = () => {
       <Route element={<Layout />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset" element={<Reset />} />
       </Route>
 

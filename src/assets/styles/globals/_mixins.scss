@@ -144,6 +144,57 @@
   }
 }
 
+@mixin radioGroup {
+  user-select: none;
+  label {
+    display: inline-block;
+    position: relative;
+    padding-inline-start: rem(35);
+    cursor: pointer;
+
+    input {
+      display: none;
+
+      &:checked ~ span {
+        border-color: getClr($colors, "primary", 50);
+        &::after {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    }
+
+    span {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: rem(2) solid getClr($colors, "primary", 300);
+      border-radius: 50%;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: border-color 0.3s ease;
+
+      &::after {
+        content: "";
+        height: 0.8rem;
+        width: 0.8rem;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: getClr($colors, "primary", 50);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+      }
+    }
+
+    &:hover span {
+      border-color: getClr($colors, "primary", 50);
+    }
+  }
+}
+
 // -------GRID CONTAINER--------------------------------
 
 @mixin twoGridContainer {

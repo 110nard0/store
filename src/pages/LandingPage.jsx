@@ -1,18 +1,9 @@
 import React from "react";
 
-import bgMobile from "../assets/images/bg-mobile.png";
-import bgDesktop from "../assets/images/bg-desktop.jpeg";
+import "../assets/styles/pages/LandingPage.scss";
 
 const LandingPage = () => {
-  return (
-    <section className="landing-page">
-      <picture className="bg">
-        <source media="(max-width: 599px)" srcSet={bgMobile} />
-
-        <img src={bgDesktop} alt="" role="presentaion" />
-      </picture>
-    </section>
-  );
+  return <section className="landing-page"></section>;
 };
 
 export default LandingPage;

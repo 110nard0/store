@@ -1,0 +1,85 @@
+@use "../index.scss" as *;
+@use "./LoginPage.scss" as *;
+
+.prev_container {
+  max-width: 80rem;
+  width: 90%;
+  margin-inline: auto;
+  margin-bottom: 1.3rem;
+  .prev_btn {
+    @include btnSecondary;
+  }
+}
+
+.register-page {
+  @extend .login-page;
+
+  .login_link {
+    @include btnNeutral;
+    margin-left: 0.5rem;
+  }
+
+  .register_btn {
+    @include btnPrimary;
+  }
+
+  .preference_heading {
+    .preference_title {
+      font-size: 1rem;
+      color: getClr($colors, "primary", 200);
+      line-height: 1.625rem;
+    }
+
+    .preference_subtitle {
+      color: getClr($colors, "primary", 500);
+      font-size: 0.875rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  .preference_container {
+    .preference_box {
+      @include alignCenter;
+      padding: 0.5rem 1.25rem;
+      justify-content: space-between;
+      color: getClr($colors, "primary", 50);
+      margin-bottom: 0.25rem;
+      background: getClr($colors, "primary", 800);
+      border: rem(1.5) solid transparent;
+      user-select: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: getClr($colors, "primary", 700);
+      }
+
+      &.open {
+        border: rem(1.5) solid getClr($colors, "primary", 50);
+        background: none;
+
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .preference_select {
+      display: flex;
+      padding: 1rem;
+      align-items: center;
+      gap: 1.25rem 2.5rem;
+      flex-wrap: wrap;
+      border: rem(1.5) solid getClr($colors, "primary", 50);
+      background: getClr($colors, "primary", 800);
+
+      .radio-group {
+        @include radioGroup;
+      }
+    }
+  }
+
+  .submit_btn {
+    @include btnPrimary;
+  }
+}

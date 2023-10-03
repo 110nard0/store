@@ -89,3 +89,15 @@
     }
   }
 }
+
+// REMOVE THE BORDER TOP FROM THE FOOTER ON THE LANDING PAGE
+main:has(.landing-page) + .footer {
+  border-top: none;
+}
+
+// ADD THE BORDER TOP FROM THE FOOTER ON PASSWORD RESET SENT CONTAINER
+main:has(.sent-container) + .footer {
+  @include mobile {
+    border-top: rem(1) solid getClr($colors, "primary", 600);
+  }
+}

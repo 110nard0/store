@@ -45,7 +45,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className="navbar">
+    <header className="navbar">
       <nav className="navbar-nav" ref={dropDrownRef}>
         <Link to="/" className="navbar-nav_logo">
           <CustomLogo />
@@ -97,7 +97,7 @@ const NavBar = () => {
         className={`backdrop ${showMenu && "show-backdrop"}`}
         aria-hidden="true"
       ></div>
-    </div>
+    </header>
   );
 };
 

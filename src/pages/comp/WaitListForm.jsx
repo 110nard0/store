@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { waitListShema } from "../../schemas";
+import { waitListSchema } from "../../schemas";
 
 import { BiErrorCircle } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
@@ -24,7 +24,7 @@ const WaitListForm = () => {
     formState: { errors, isSubmitSuccessful },
     reset,
   } = useForm({
-    resolver: zodResolver(waitListShema),
+    resolver: zodResolver(waitListSchema),
     defaultValues: {
       name: "",
       email: "",

@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-export const waitListShema = z.object({
+// -----------------WAITLIST SCHEMA----------------
+export const waitListSchema = z.object({
   name: z.string().min(1, { message: "This field can not be empty" }),
   email: z
     .string()
@@ -8,7 +9,8 @@ export const waitListShema = z.object({
     .email("Please enter a valid email address"),
 });
 
-export const loginShema = z.object({
+// -----------------LOGIN SCHEMA----------------
+export const loginSchema = z.object({
   email: z
     .string()
     .min(1, { message: "This field can not be empty" })
@@ -16,6 +18,17 @@ export const loginShema = z.object({
   password: z.string().min(1, { message: "This field can not be empty" }),
 });
 
+// -----------------REGISTER SCHEMA----------------
+export const registerSchema = z.object({
+  name: z.string().min(1, { message: "This field can not be empty" }),
+  email: z
+    .string()
+    .min(1, { message: "This field can not be empty" })
+    .email("Please enter a valid email address"),
+  password: z.string().min(1, { message: "This field can not be empty" }),
+});
+
+// -----------------RESET SCHEMA----------------
 export const resetSchema = z
   .object({
     password: z.string().min(1, { message: "This field is required" }),
@@ -25,3 +38,15 @@ export const resetSchema = z
     message: "Password does not match",
     path: ["confirmPassword"],
   });
+
+export const forgotSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "This field can not be empty" })
+    .email("Please enter a valid email address"),
+});
+
+// -----------RADIO SCHEMA----------------------------
+export const radioSchema = z.object({
+  preference: z.string().min(1, { message: "Please select one" }),
+});
