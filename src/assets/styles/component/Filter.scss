@@ -1,0 +1,30 @@
+@use "../index.scss" as *;
+
+.filter {
+  //   outline: 1px solid red;
+  position: relative;
+
+  &-dropdown_btn {
+    @include btnSecondary;
+  }
+
+  &-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 1rem);
+    width: 30.5rem;
+    border: rem(1.5) solid getClr($colors, "primary", 50);
+    background: getClr($colors, "primary", 900);
+    padding: 1.75em 1.5em;
+  }
+
+  @include mobile {
+    &-dropdown_btn {
+      height: 2.5rem;
+    }
+
+    &-dropdown {
+      max-width: 90vw;
+    }
+  }
+}

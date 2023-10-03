@@ -1,0 +1,52 @@
+@use "../index.scss" as *;
+
+.products {
+  max-width: 80rem;
+  width: 90%;
+  margin-inline: auto;
+  padding-top: 2rem;
+
+  &_header {
+    @include alignCenter;
+    justify-content: space-between;
+    margin-bottom: 4.3rem;
+
+    &__heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: getClr($colors, "primary", 0);
+      text-transform: uppercase;
+    }
+
+    .products_filter {
+      position: fixed;
+      top: 11rem;
+      right: 5.5%;
+      z-index: 10;
+    }
+  }
+
+  &_display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include mobile {
+    padding-top: 0;
+
+    &_header {
+      margin-bottom: 1.3rem;
+      &__heading {
+        font-size: 1.25rem;
+      }
+
+      .products_filter {
+        top: 8rem;
+        right: 5%;
+      }
+    }
+    &_display {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
