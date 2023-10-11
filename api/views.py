@@ -1,18 +1,18 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+# from django.http import HttpResponse
+# from django.shortcuts import render
+from rest_framework import mixins, viewsets
+
+from .models import WaitlistUser
+from .serializers import WaitlistUserSerializer
 
 
-def index(request):
-    # return HttpResponse("Hello, world!")
-    return render(request, "api/index.html")
+# def register(request):
+#     return render(request, "api/waitlist.html")
 
 
-def greet(request, name):
-    # return HttpResponse(f"Hello {name.capitalize()}")
-    return render(request, "api/greet.html", {
-        "name": name.capitalize()
-    })
-
-
-def waitlist(request):
-    return
+class WaitlistUserViewSet(mixins.CreateModelMixin,
+                          mixins.ListModelMixin,
+                          mixins.RetrieveModelMixin,
+                          viewsets.GenericViewSet):
+    queryset = WaitlistUser.objects.all()
+    serializer_class = WaitlistUserSerializer

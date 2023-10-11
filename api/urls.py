@@ -1,9 +1,11 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import WaitlistUserViewSet
 
-from . import views
+router = DefaultRouter()
+router.register(r'waitlist', WaitlistUserViewSet)
 
-# app_name  = "api"
+app_name = "api"
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("<str:name>", views.greet, name="greet")
+    path("", include(router.urls)),
 ]
