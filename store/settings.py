@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,27 +21,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yg!hw16(a!ne1fsmudqtpv6)pk8vec8ll1(hi#*vw66g69zo4l'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['trgst.com', 'www.trgst.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'api',
+    'corsheaders',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sessions',
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -106,7 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
@@ -122,3 +127,60 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'api.CustomUser'
+
+# Use Django's standard `django.contrib.auth` permissions,
+# or allow read-only access for unauthenticated users.
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+
+
+# Ensure that not all origins are allowed, and then explicitly specify allowed origins
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
+
+# Special settings for cookies or any special headers
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "accept",
+    "origin",
+    "Authorization",
+    "x-csrftoken",
+]
+
+
+# Routing configurations
+
+# APPEND_SLASH = False
+
+
+# Production configurations
+
+# Only communicate with site using HTTPS
+
+# SECURE_HSTS_SECONDS = 31536000
+
+# Redirect all requests to HTTPS if they come in as HTTP
+
+# SECURE_SSL_REDIRECT = True
+
+# Send Cookies over non-secure connections
+
+# SESSION_COOKIE_SECURE = True
+
+# Send CSRF token over non-secure connections
+
+# CSRF_COOKIE_SECURE = True
