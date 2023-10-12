@@ -24,9 +24,12 @@ dist-ssr
 *.sln
 *.sw?
 
+# Secret files
 .env
+*db*
 
 
 # Django files
 */__pycache__/*
 *.pyc
+api/migrations/*
