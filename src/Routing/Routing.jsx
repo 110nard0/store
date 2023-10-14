@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 
-import ProtectedRoutes from "./protectedRoutes";
+import ProtectedRoutes from "./ProtectedRoutes";
 import WaitListPage from "../pages/WaitListPage";
 import LandingPage from "../pages/LandingPage";
 import Layout from "./Layout";
