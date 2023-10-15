@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -33,17 +33,27 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'api',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google'
     'corsheaders',
-    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
+    # 'django.contrib.sites',
     'django.contrib.staticfiles',
+    # 'dj_rest_auth',
+    # 'dj_rest_auth.registration',
+    'rest_framework',
+    # 'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
+    # 'allauth.account.middleware.AccountMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -129,15 +139,73 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'api.CustomUser'
+# USER_MODEL_USERNAME_FIELD = 'email'
+
+AUTHENTICATION_BACKENDS = [
+    # 'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Use Django's standard `django.contrib.auth` permissions,
 # or allow read-only access for unauthenticated users.
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-#     ]
+# Rest Framework configuration
+REST_FRAMEWORK = {
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    # ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+
+# Django-Rest-Auth configurations
+
+# SITE_ID = 1
+
+# REST_AUTH = {
+#     'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
+#     'USE_JWT': True,
+#     'JWT_AUTH_COOKIE': 'auth-token',
+#     'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
+#     'JWT_AUTH_HTTPONLY': False,
 # }
+
+# DJANGO_REST_AUTH_SERIALIZERS = {
+#     'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
+# }
+
+
+# Django-All-Auth configurations
+
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+# LOGIN_URL = 'http://localhost:8000/api/login'
+
+
+# JWT Authentication configurations
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
+
+
+# Email configuration
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'email@gmail.com'
+# EMAIL_HOST_PASSWORD = ********
+# EMAIL_PORT = 587
 
 
 # Ensure that not all origins are allowed, and then explicitly specify allowed origins
