@@ -43,12 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
-    # 'dj_rest_auth',
-    # 'dj_rest_auth.registration',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     'rest_framework',
-    # 'rest_framework.authtoken',
+    'rest_framework.authtoken',
     'rest_framework_simplejwt',
 ]
 
@@ -163,7 +163,7 @@ REST_FRAMEWORK = {
 
 # Django-Rest-Auth configurations
 
-# SITE_ID = 1
+SITE_ID = 1
 
 # REST_AUTH = {
 #     'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
@@ -171,10 +171,6 @@ REST_FRAMEWORK = {
 #     'JWT_AUTH_COOKIE': 'auth-token',
 #     'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
 #     'JWT_AUTH_HTTPONLY': False,
-# }
-
-# DJANGO_REST_AUTH_SERIALIZERS = {
-#     'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
 # }
 
 
@@ -200,12 +196,12 @@ SIMPLE_JWT = {
 
 # Email configuration
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'email@gmail.com'
-# EMAIL_HOST_PASSWORD = ********
-# EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.trgst.com'
+EMAIL_HOST_USER = 'holla@trgst.com'
+EMAIL_HOST_PASSWORD = 'PtCHK@$Kj1'
+EMAIL_PORT = 587
 
 
 # Ensure that not all origins are allowed, and then explicitly specify allowed origins
