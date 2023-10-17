@@ -32,3 +32,4 @@ dist-ssr
 # Django files
 */__pycache__/*
 *.pyc
+api/migrations/000*.py
