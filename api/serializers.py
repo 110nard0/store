@@ -65,3 +65,10 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 'Must include "email" and "password".')
         return data
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'category',
+                  'type', 'size', 'price', 'description']

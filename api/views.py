@@ -5,8 +5,8 @@ from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import CustomUser, WaitlistUser
-from .serializers import CustomUserSerializer, LoginSerializer, WaitlistUserSerializer
+from .models import CustomUser, Product, WaitlistUser
+from .serializers import CustomUserSerializer, LoginSerializer, ProductSerializer, WaitlistUserSerializer
 
 
 class CustomUserRegister(generics.CreateAPIView):
@@ -30,7 +30,6 @@ class WaitlistUserViewSet(mixins.CreateModelMixin,
     serializer_class = WaitlistUserSerializer
 
 
-# class LoginView(generics.CreateAPIView):
 class LoginView(views.APIView):
     queryset = CustomUser.objects.all()
     serializer_class = LoginSerializer
@@ -48,3 +47,9 @@ class LoginView(views.APIView):
             access_token = str(refresh.access_token)
             return Response({"access": access_token, "refresh": refresh_token}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProductViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    # permission_classes = [IsAdminUser]

@@ -30,7 +30,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
     password = models.CharField(max_length=255)
-    preference = models.CharField(max_length=50, choices=[
+    preference = models.CharField(max_length=25, choices=[
         ('minimal', 'Minimal'),
         ('alte', 'Alte'),
         ('modern', 'Modern/Chic'),
@@ -77,7 +77,49 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class Product(models.Model):
     """
     """
-    pass
+    # Choices for product fields
+    CATEGORIES = [
+        ('minimal', 'Minimal'),
+        ('alte', 'Alte'),
+        ('modern', 'Modern/Chic'),
+    ]
+
+    CLOTHING_TYPES = [
+        ('TOP', 'Tops'),
+        ('BOT', 'Bottoms'),
+        ('HAT', 'Hats'),
+    ]
+
+    SIZES = [
+        ('S', 'S'),
+        ('M', 'M'),
+        ('L', 'L'),
+        ('XL', 'XL'),
+        ('XXL', 'XXL'),
+    ]
+
+    COLORS = [
+        ('red', 'Red'),
+        ('green', 'Green'),
+        ('blue', 'Blue'),
+        ('white', 'White'),
+        ('black', 'Black'),
+    ]
+
+    # Product fields
+    title = models.CharField(max_length=64)
+    description = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=9, decimal_places=2)
+    category = models.CharField(max_length=25, choices=CATEGORIES)
+    type = models.CharField(max_length=3, choices=CLOTHING_TYPES)
+    size = models.CharField(max_length=4, choices=SIZES)
+    color = models.CharField(max_length=8, choices=COLORS)
+
+    # front_image = models.ImageField(upload_to='products/')
+    # back_image = models.ImageField(upload_to='products/')
+
+    def __str__(self):
+        return f"Item #{self.id} ({self.title}) : {self.get_type_display()} - {self.get_size_display()} - {self.get_color_display()}"
 
 
 class Order(models.Model):
