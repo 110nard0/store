@@ -44,6 +44,10 @@
   &:hover {
     background: getClr($colors, "primary", 800);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 @mixin btnNeutral {
@@ -57,6 +61,7 @@
   border: none;
   font-size: 1rem;
   user-select: none;
+  font-family: $ff-red-rose;
 
   &:hover,
   &:has(a.active) {
@@ -66,6 +71,11 @@
       color: inherit;
       text-underline-offset: rem(4);
     }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: getClr($colors, "primary", 700);
   }
 
   @include mobile {
@@ -249,11 +259,11 @@
 
 // -------CONTAINER--------------------------------
 
-@mixin twoGridContainer {
+@mixin twoGridContainer($frac) {
   border: rem(2) solid getClr($colors, "primary", 200);
 
   display: grid;
-  grid-template-columns: 1.5fr 2fr;
+  grid-template-columns: $frac;
 
   & > div:first-of-type {
     border-right: rem(2) solid getClr($colors, "primary", 200);

@@ -20,7 +20,8 @@ export const loginSchema = z.object({
 
 // -----------------REGISTER SCHEMA----------------
 export const registerSchema = z.object({
-  name: z.string().min(1, { message: "This field can not be empty" }),
+  firstname: z.string().min(1, { message: "This field can not be empty" }),
+  lastname: z.string().min(1, { message: "This field can not be empty" }),
   email: z
     .string()
     .min(1, { message: "This field can not be empty" })

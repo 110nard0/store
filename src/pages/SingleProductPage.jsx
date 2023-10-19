@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../assets/styles/pages/SingleProductPage.scss";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { FaChevronDown } from "react-icons/fa";
-import { useNavigate, useParams } from "react-router-dom";
+import { GoShare } from "react-icons/go";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-import image1 from "../assets/images/image1.jpg";
-import image2 from "../assets/images/image2.jpg";
 import ProductCard from "../components/ProductCard";
 import ColourRadioBtn from "../components/ColourRadioBtn";
 import RadioBtn from "../components/RadioBtn";
 import useClickOutiside from "../hooks/use-clickOutside";
+import FixedPosition from "../components/FixedPosition";
+import ShareContainer from "../components/ShareContainer";
+import SingleProductLeft from "./comp/SingleProductLeft";
 
 const sizes = [
   { title: "Small (S)", value: "Small" },
@@ -25,6 +27,14 @@ const SingleProductPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  //   ===================== STATES ==========================
+  const [selectedSize, setSelectedSize] = useState("Medium (M)");
+  const [selectedColour, setSelectedColour] = useState("#6EE7B7");
+
+  const [showAccordion, setShowAccordion] = useState("");
+
+  const [showShareModal, setShowShareModal] = useState(false);
+
   //   ===================== CLOSE DROPDOWN ==========================
   const {
     visible: showOptions,
@@ -32,49 +42,50 @@ const SingleProductPage = () => {
     ref,
   } = useClickOutiside(false);
 
-  //   ===================== STATES ==========================
-  const [selectedSize, setSelectedSize] = useState("Medium (M)");
-  const [selectedColour, setSelectedColour] = useState("#6EE7B7");
+  const accordionhandler = (val) => {
+    if (val === showAccordion) {
+      setShowAccordion("");
+    } else {
+      setShowAccordion(val);
+    }
+  };
+
+  const shareHandler = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          url: url,
+        })
+        .then(() => console.log("thanks for sharing"))
+        .catch(console.error);
+    } else {
+      setShowShareModal(true);
+    }
+  };
 
   //   ===================== NAVIGATE BACK TO THE PREVIOUS PAGE ==========================
   const navigationHandler = () => {
     navigate("/products");
   };
 
+  // important do not forget to use
   //   console.log(selectedSize.split(" ")[0]);
 
   return (
     <section className="single_product-page">
-      <div className="back_container">
+      <FixedPosition className="back_container">
         <button type="button" className="prev_btn" onClick={navigationHandler}>
           <AiOutlineArrowLeft /> Back
         </button>
-      </div>
+      </FixedPosition>
 
       <div className="product_display">
+        {/* ########################### LEFT CONTAINER ################################ */}
         <div className="product_display_left">
-          <div className="image_carousel">
-            <div className="image_preview">
-              <img src={image1} alt="cloth only" />
-              <img src={image2} alt="cloth on model" />
-
-              <img src={image1} alt="cloth only" />
-              <img src={image2} alt="cloth on model" />
-
-              <img src={image1} alt="cloth only" />
-              <img src={image2} alt="cloth on model" />
-            </div>
-          </div>
-          <div className="image_pagination">
-            <button type="button" className="pagination_btn">
-              <AiOutlineArrowLeft size={25} />
-            </button>
-            <div className="paginators">1</div>
-            <button type="button" className="pagination_btn">
-              <AiOutlineArrowRight size={25} />
-            </button>
-          </div>
+          <SingleProductLeft />
         </div>
+
+        {/*##########################  RIGHT CONTAINER ############################## */}
         <div className="product_display_right">
           <p className="collection">Atlas collection</p>
           <div className="item">
@@ -84,17 +95,17 @@ const SingleProductPage = () => {
           <div className="color_btns">
             <ColourRadioBtn
               colour="#6EE7B7"
-              changeHandler={() => setSelectedSize("#6EE7B7")}
+              changeHandler={() => setSelectedColour("#6EE7B7")}
               checked={selectedColour === "#6EE7B7"}
             />
             <ColourRadioBtn
               colour="#FCD34D"
-              changeHandler={() => setSelectedSize("#FCD34D")}
+              changeHandler={() => setSelectedColour("#FCD34D")}
               checked={selectedColour === "#FCD34D"}
             />
             <ColourRadioBtn
               colour="#64748B"
-              changeHandler={() => setSelectedSize("#64748B")}
+              changeHandler={() => setSelectedColour("#64748B")}
               checked={selectedColour === "#64748B"}
             />
           </div>
@@ -127,6 +138,59 @@ const SingleProductPage = () => {
             <button type="button" className="btn-pri">
               Add to Bag
             </button>
+          </div>
+
+          {/* -------------------- ACCORDIONS ----------------- */}
+          <div className="accordion">
+            <div
+              className={`accordion_title ${
+                showAccordion === "details" && "open"
+              }`}
+              onClick={() => accordionhandler("details")}
+            >
+              Product details <FaChevronDown />
+            </div>
+            {showAccordion === "details" && (
+              <h6 className="accordion_text">
+                The Eternal track jacket reinterprets modern sportswear in an
+                innovative viscose tricot knit to provide a structured
+                silhouette with stretch comfort. The relaxed fit is cropped with
+                thinly padded dropped shoulders to contour the frame. An
+                embossed Eternal logo is across the back, and the Fear of God
+                leather label is stitched at the back collar.
+              </h6>
+            )}
+
+            <div
+              className={`accordion_title ${
+                showAccordion === "sizing" && "open"
+              }`}
+              onClick={() => accordionhandler("sizing")}
+            >
+              Sizing guide <FaChevronDown />
+            </div>
+            {showAccordion === "sizing" && (
+              <h6 className="accordion_text">
+                Check out our sizing guide{" "}
+                <Link to="/features" className="size_link">
+                  here
+                </Link>
+              </h6>
+            )}
+          </div>
+
+          {/* -------------------- SHARING FEATURES ----------------- */}
+
+          <div className="share_container">
+            <button type="button" className="share_btn" onClick={shareHandler}>
+              <GoShare size={20} /> Share
+            </button>
+
+            {showShareModal && (
+              <div className="share_modal">
+                <ShareContainer />
+              </div>
+            )}
           </div>
         </div>
       </div>

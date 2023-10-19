@@ -1,7 +1,7 @@
 @use "../index.scss" as *;
 
 .login-page {
-  @include twoGridContainer;
+  @include twoGridContainer(1.5fr 2fr);
 
   .left-container {
     display: flex;

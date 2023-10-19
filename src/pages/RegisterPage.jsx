@@ -48,7 +48,8 @@ const RegisterPage = () => {
   } = useForm({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      name: "",
+      firstname: "",
+      lastname: "",
       email: "",
       password: "",
     },
@@ -95,19 +96,35 @@ const RegisterPage = () => {
           >
             {!showPreferences && (
               <>
-                <div className={`input-group ${errors.name && "error"}`}>
-                  <label htmlFor="name">Name</label>
+                <div className={`input-group ${errors.firstname && "error"}`}>
+                  <label htmlFor="firstname">First name</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="firstname"
+                    name="firstname"
                     autoComplete="on"
-                    placeholder="Enter your name"
-                    {...register("name")}
+                    placeholder="Enter your first name"
+                    {...register("firstname")}
                   />
-                  {errors.name && (
+                  {errors.firstname && (
                     <span>
-                      <BiErrorCircle /> {errors.name?.message}
+                      <BiErrorCircle /> {errors.firstname?.message}
+                    </span>
+                  )}
+                </div>
+                <div className={`input-group ${errors.lastname && "error"}`}>
+                  <label htmlFor="lastname">Last name</label>
+                  <input
+                    type="text"
+                    id="lastname"
+                    name="lastname"
+                    autoComplete="on"
+                    placeholder="Enter your last name"
+                    {...register("lastname")}
+                  />
+                  {errors.lastname && (
+                    <span>
+                      <BiErrorCircle /> {errors.lastname?.message}
                     </span>
                   )}
                 </div>

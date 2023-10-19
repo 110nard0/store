@@ -1,25 +1,21 @@
 @use "../index.scss" as *;
 
 .products {
-  padding-top: 2rem;
+  padding-top: 5.5rem;
 
   &_header {
     @include alignCenter;
     justify-content: space-between;
-    margin-bottom: 4.3rem;
+    // margin-bottom: 4.3rem;
 
     &__heading {
       font-size: 1.75rem;
       font-weight: 700;
       color: getClr($colors, "primary", 0);
       text-transform: uppercase;
-    }
-
-    .products_filter {
-      position: fixed;
-      top: 11rem;
-      right: 5.5%;
-      z-index: 10;
+      background: getClr($colors, "primary", 900);
+      padding: 0.45em 1.25em;
+      border: rem(1.5) solid getClr($colors, "primary", 200);
     }
   }
 
@@ -28,11 +24,18 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
+  @include tablet {
+    &_display {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @include mobile {
-    padding-top: 0;
+    padding-top: 2rem;
 
     &_header {
       margin-bottom: 1.3rem;
+      top: 7.3rem !important;
       &__heading {
         font-size: 1.25rem;
       }
@@ -43,7 +46,7 @@
       }
     }
     &_display {
-      grid-template-columns: repeat(2, 1fr);
+      // grid-template-columns: repeat(2, 1fr);
     }
   }
 }

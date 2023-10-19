@@ -8,10 +8,15 @@ import CustomLogo from "./CustomLogo";
 import useClickOutiside from "../hooks/use-clickOutside";
 import HamburgerSVG from "./HamburgerSVG";
 import CloseSVG from "./CloseSVG";
+import { cartContext } from "../store/context";
 
-const user = false;
+const user = true;
 
 const NavBar = () => {
+  const {
+    state: { cart },
+  } = cartContext();
+
   // CLOSE THE MOBILE MENU DROPDOWN WHEN CLICKED OUTSIDE IT CONTAINER
   const {
     ref: dropDrownRef,
@@ -65,7 +70,7 @@ const NavBar = () => {
                 <NavLink to="/">Account</NavLink>
               </li>
               <li>
-                <NavLink to="/">Bag&#40;0&#41;</NavLink>
+                <NavLink to="/cart">Bag&#40;{cart.length}&#41;</NavLink>
               </li>
             </>
           )}
@@ -81,11 +86,16 @@ const NavBar = () => {
           )}
         </ul>
 
-        {!showMenu && (
-          <Link to="/" className="navbar-nav_bag">
-            <MdOutlineShoppingBag size={24} />
-          </Link>
-        )}
+        {!showMenu &&
+          (user ? (
+            <Link to="/products" className="navbar-nav_bag">
+              <MdOutlineShoppingBag size={24} />
+            </Link>
+          ) : (
+            <NavLink to="/login" className="navbar-nav_bag">
+              Log in
+            </NavLink>
+          ))}
         <div
           className="navbar-nav_menu-icon"
           onClick={() => setShowMenu(!showMenu)}

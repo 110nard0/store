@@ -14,30 +14,32 @@ import SingleProductPage from "../pages/SingleProductPage";
 import ProductsPage from "../pages/ProductsPage";
 import FeaturesPage from "../pages/FeaturesPage";
 import About from "../pages/About";
+import Cart from "../pages/Cart";
 
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/waitlist" element={<WaitListPage />} />
+      <Route path="/waitlist" Component={WaitListPage} />
 
       {/* NON PROTECTED ROUTES */}
-      <Route element={<Layout />}>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset" element={<Reset />} />
-        <Route path="/products/:id" element={<SingleProductPage />} />
+      <Route Component={Layout}>
+        <Route path="/login" Component={LoginPage} />
+        <Route path="/register" Component={RegisterPage} />
+        <Route path="/forgot-password" Component={ForgotPassword} />
+        <Route path="/reset" Component={Reset} />
+        <Route path="/products/:id" Component={SingleProductPage} />
 
         {/* PAGE NOT FOUND */}
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" Component={ErrorPage} />
       </Route>
 
       {/* PROTECTED ROUTES */}
-      <Route element={<ProtectedRoutes />}>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/features" element={<FeaturesPage />} />
-        <Route path="/about" element={<About />} />
+      <Route Component={ProtectedRoutes}>
+        <Route path="/" Component={LandingPage} />
+        <Route path="/products" Component={ProductsPage} />
+        <Route path="/cart" Component={Cart} />
+        <Route path="/features" Component={FeaturesPage} />
+        <Route path="/about" Component={About} />
       </Route>
     </Routes>
   );
