@@ -53,11 +53,11 @@ const NavBar = () => {
 
         <ul className={`navbar-nav_links ${showMenu && "show-menu"}`}>
           <li>
-            <Link to="/features">Features</Link>
+            <NavLink to="/features">Features</NavLink>
           </li>
 
           <li>
-            <Link to="/products">Shop</Link>
+            <NavLink to="/products">Shop</NavLink>
           </li>
           {user && (
             <>

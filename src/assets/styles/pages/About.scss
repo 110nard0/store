@@ -1,7 +1,6 @@
 @use "../index.scss" as *;
 
 .about {
-  @include container;
   border: rem(1) solid getClr($colors, "primary", 50);
 
   .image_container {

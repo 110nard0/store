@@ -1,1 +1,185 @@
 @use "../index.scss" as *;
+
+.single_product-page {
+  .back_container {
+    position: fixed;
+    left: 5.5%;
+    top: 9rem;
+    margin-bottom: 1.38rem;
+    z-index: 10;
+
+    .prev_btn {
+      @include btnSecondary;
+    }
+  }
+
+  .product_display {
+    display: grid;
+    grid-template-columns: 45.88rem 1fr;
+    width: 100%;
+    padding-bottom: 4.5rem;
+    border-bottom: 1px solid getClr($colors, "primary", 600);
+    margin-top: 13rem;
+
+    &_left {
+      width: 100%;
+      overflow: hidden;
+
+      .image_carousel {
+        overflow-x: auto;
+        display: flex;
+        margin-bottom: 1.2rem;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .image_preview {
+          display: flex;
+          justify-content: space-between;
+          gap: 0.5rem;
+
+          img {
+            width: 22.88rem;
+            height: 29.38rem;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .image_pagination {
+        @include alignCenter;
+        justify-content: space-between;
+
+        .pagination_btn {
+          width: 2.25rem;
+          height: 2.25rem;
+          @include btnNeutral;
+          @include alignCenter;
+          justify-content: center;
+        }
+      }
+    }
+    &_right {
+      padding-inline: 1.25rem;
+
+      .collection {
+        font-size: 0.75rem;
+        color: getClr($colors, "primary", 500);
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+
+      .item {
+        @include alignCenter;
+        justify-content: space-between;
+        color: getClr($colors, "primary", 50);
+        text-transform: capitalize;
+
+        &_name {
+          font-size: 1.75rem;
+        }
+        &_price {
+          font-size: 1.5rem;
+        }
+      }
+      .color_btns {
+        height: 2rem;
+        @include alignCenter;
+        margin-block: 1.25rem;
+      }
+
+      .size_container {
+        .preference_box {
+          @include alignCenter;
+          padding: 0.5rem 1.25rem;
+          justify-content: space-between;
+          color: getClr($colors, "primary", 50);
+          margin-bottom: 0.25rem;
+          background: getClr($colors, "primary", 800);
+          border: rem(1.5) solid transparent;
+          user-select: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: getClr($colors, "primary", 700);
+          }
+
+          &.open {
+            border: rem(1.5) solid getClr($colors, "primary", 50);
+            background: none;
+
+            svg {
+              transform: rotate(180deg);
+            }
+          }
+        }
+
+        .preference_select {
+          display: flex;
+          padding: 1rem;
+          align-items: center;
+          gap: 1.25rem 2.5rem;
+          flex-wrap: wrap;
+          border: rem(1.5) solid getClr($colors, "primary", 50);
+          background: getClr($colors, "primary", 800);
+
+          .radio-group {
+            @include radioGroup;
+          }
+        }
+      }
+
+      .cta_btns {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-block: 1.25rem;
+
+        .btn-sec {
+          @include btnSecondary;
+          width: 100%;
+        }
+
+        .btn-pri {
+          @include btnPrimary;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .recommend_container {
+    margin-top: 2.25rem;
+    width: 100%;
+
+    &__heading {
+      color: getClr($colors, "primary", 50);
+      margin-bottom: 1.5rem;
+    }
+
+    .recommend_items {
+      width: 100%;
+      display: flex;
+    }
+  }
+
+  @include mobile {
+    .back_container {
+      left: 5%;
+      top: 8rem;
+    }
+    .product_display {
+      grid-template-columns: 1fr;
+    }
+
+    .recommend_container .recommend_items {
+      flex-wrap: wrap;
+
+      > a {
+        width: 11.2rem;
+      }
+    }
+  }
+}

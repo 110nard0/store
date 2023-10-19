@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import "../assets/styles/pages/ForgotPassword.scss";
 import { BiErrorCircle } from "react-icons/bi";
@@ -9,18 +9,26 @@ import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   // -------------------------STATE-----------------------------------------
+  const [email, setEmail] = useState("");
+  const [emailSplitted, setEmailSplitted] = useState("");
   const [passwordSent, setPasswordSent] = useState(false);
+
+  useMemo(() => {
+    const splittedEmail = email.split("@")[0].substring(0, 2);
+
+    setEmailSplitted(splittedEmail);
+  }, [email]);
 
   // -------------------------SUBMISSION OF THE FORM DATA-----------------------------------------
   const submitHandler = (formData) => {
-    setPasswordSent(true);
+    setEmail(formData.email);
   };
 
   // -------------------------FORM VALIDATION-----------------------------------------
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
     reset,
   } = useForm({
     resolver: zodResolver(forgotSchema),
@@ -28,6 +36,13 @@ const ForgotPassword = () => {
       email: "",
     },
   });
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      setPasswordSent(true);
+      reset();
+    }
+  }, [isSubmitSuccessful]);
 
   // ================================================================================================
   if (!passwordSent)
@@ -83,8 +98,10 @@ const ForgotPassword = () => {
       <section className="sent-container">
         <p className="heading">Reset Password</p>
         <p className="sub_heading">
-          We sent a link to ryan@gm***.com. Please click the link in your email
-          to reset your password.
+          {/* We sent a link to {email.substring(0, email.length - 7)}***.com. */}
+          We sent a link to {emailSplitted}***
+          {email.substring(email.length - 9)}. Please click the link in your
+          email to reset your password.
         </p>
         <Link to="/login" className="login_btn">
           Back to log in

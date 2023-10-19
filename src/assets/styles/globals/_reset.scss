@@ -1,6 +1,7 @@
 @use "./colours" as *;
 @use "./functions" as *;
 @use "./variables" as *;
+@use "./breakpoints" as *;
 
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Red+Rose:wght@400;700&display=swap");
 
@@ -44,5 +45,8 @@ img {
 }
 
 section:not(.landing-page, .waitlist_page) {
+  max-width: 80rem;
+  width: 90%;
+  margin-inline: auto;
   margin-block: 8.7rem 5.69rem;
 }

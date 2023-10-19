@@ -1,7 +1,7 @@
 @use "../index.scss" as *;
 
 .product-card {
-  max-width: 26.6875rem;
+  width: 26.6875rem;
   padding: 2.5em;
   border: rem(1) solid getClr($colors, "primary", 100);
   cursor: pointer;
@@ -64,6 +64,7 @@
 
   @include mobile {
     max-width: 12rem;
+    width: 100%;
     padding: 1em 0.75em;
     &_preview {
       max-width: 9.75rem;

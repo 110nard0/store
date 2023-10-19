@@ -3,6 +3,9 @@ import React from "react";
 import "../assets/styles/pages/ProductsPage.scss";
 import ProductCard from "../components/ProductCard";
 import Filter from "../components/Filter";
+import MetaTag from "../components/MetaTag";
+
+const products = Array.from({ length: 9 });
 
 const ProductsPage = () => {
   return (
@@ -13,18 +16,16 @@ const ProductsPage = () => {
           <Filter />
         </div>
       </div>
-
       <div className="products_display">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {products.map((_, i) => (
+          <ProductCard key={i} id={i + 1} />
+        ))}
       </div>
+      {/* ================================ METATAG ================================= */}
+      <MetaTag
+        title="TRGST: All Collections"
+        description="All New designs of the TRGST website"
+      />
     </section>
   );
 };

@@ -2,7 +2,7 @@
 
 .footer {
   display: flex;
-  max-width: 80.125rem;
+  max-width: 80rem;
   width: 90%;
   gap: 6.5625rem;
   margin-inline: auto;
@@ -55,7 +55,7 @@
 
   @include mobile {
     flex-direction: column-reverse;
-    border-top: none;
+    // border-top: none;
     margin-bottom: 2.5rem;
     padding-top: 2.5rem;
     gap: 1.25rem;
@@ -97,8 +97,8 @@ main:has(.landing-page) + .footer {
 }
 
 // ADD THE BORDER TOP ON MOBILE VIEQW TO THESE PAGES
-main:has(.sent-container, .error-page) + .footer {
-  @include mobile {
-    border-top: rem(1) solid getClr($colors, "primary", 600);
-  }
-}
+// main:has(.sent-container, .error-page) + .footer {
+//   @include mobile {
+//     border-top: rem(1) solid getClr($colors, "primary", 600);
+//   }
+// }

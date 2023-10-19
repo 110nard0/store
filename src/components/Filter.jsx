@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../assets/styles/component/Filter.scss";
 
@@ -25,6 +25,25 @@ const Filter = () => {
     setVisible: setShowDropDown,
     ref,
   } = useClickOutiside(false);
+
+  const [filters, setFilters] = useState({
+    "cloth-type": [],
+    sizes: [],
+    colour: [],
+  });
+
+  const filterHandler = (event) => {
+    const { value, name, checked } = event.target;
+
+    if (checked) {
+      setFilters((prev) => ({ ...prev, [name]: [...prev[name], value] }));
+    } else {
+      setFilters((prev) => ({
+        ...prev,
+        [name]: [...prev[name].filter((item) => item !== value)],
+      }));
+    }
+  };
 
   return (
     <div className="filter" ref={ref}>
@@ -59,6 +78,8 @@ const Filter = () => {
                   value={cloth}
                   title={cloth}
                   key={cloth}
+                  onchange={filterHandler}
+                  checked={filters["cloth-type"].includes(cloth)}
                 />
               ))}
             </div>
@@ -67,7 +88,7 @@ const Filter = () => {
             <div className="heading">
               <p>Sizes</p>
               <button type="button" className="sizes-link">
-                <Link to="/">View our size guide</Link>
+                <Link to="/features">View our size guide</Link>
                 <BsArrowUpRight />
               </button>
             </div>
@@ -78,6 +99,8 @@ const Filter = () => {
                   value={size.value}
                   title={size.title}
                   key={size.title}
+                  onchange={filterHandler}
+                  checked={filters["sizes"].includes(size.value)}
                 />
               ))}
             </div>
@@ -93,6 +116,8 @@ const Filter = () => {
                   value={colour}
                   title={colour}
                   key={colour}
+                  onchange={filterHandler}
+                  checked={filters["colour"].includes(colour)}
                 />
               ))}
             </div>

@@ -3,9 +3,6 @@
 .reset-page {
   padding-top: 0.5rem;
   .success-container {
-    max-width: 80rem;
-    width: 90%;
-    margin-inline: auto;
     padding: 0.75rem 1.25rem;
     @include alignCenter;
     gap: 0.75rem;

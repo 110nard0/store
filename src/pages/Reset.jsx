@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 const Reset = () => {
   // -------------------------NAVIGATION-----------------------------------------
 
-  //   const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // -------------------------SHOW AND HIDE STATES-----------------------------------------
   const [showPassword, setShowPassword] = useState({
@@ -23,7 +23,7 @@ const Reset = () => {
 
   // -------------------------SUBMISSION OF THE FORM DATA-----------------------------------------
   const submitHandler = (formData) => {
-    console.log(formData);
+    // console.log(formData);
   };
 
   // -------------------------FORM VALIDATION-----------------------------------------
@@ -45,9 +45,10 @@ const Reset = () => {
       setShowSucess(true);
       reset();
 
-      //   setTimeout(() => {
-      //     setShowSucess(false);
-      //   }, 3000);
+      // setTimeout(() => {
+      //   setShowSucess(false);
+      //   navigate("/login");
+      // }, 3000);
     }
   }, [isSubmitSuccessful]);
 

@@ -58,7 +58,8 @@
   font-size: 1rem;
   user-select: none;
 
-  &:hover {
+  &:hover,
+  &:has(a.active) {
     color: getClr($colors, "primary", 0);
     a {
       text-decoration: underline;
@@ -250,9 +251,6 @@
 
 @mixin twoGridContainer {
   border: rem(2) solid getClr($colors, "primary", 200);
-  max-width: 80rem;
-  width: 90%;
-  margin-inline: auto;
 
   display: grid;
   grid-template-columns: 1.5fr 2fr;
@@ -279,10 +277,4 @@
       padding: 1.75rem 1.25rem;
     }
   }
-}
-
-@mixin container {
-  max-width: 80rem;
-  width: 90%;
-  margin-inline: auto;
 }

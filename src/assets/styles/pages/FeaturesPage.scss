@@ -1,8 +1,6 @@
 @use "../index.scss" as *;
 
 .features {
-  @include container;
-
   .social-impact_container {
     display: grid;
     grid-template-columns: 2fr 1fr;

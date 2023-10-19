@@ -25,19 +25,18 @@ const RegisterPage = () => {
 
   // -------------------------SUBMISSION OF THE FORM DATA-----------------------------------------
   const submitHandler = (formData) => {
-    // setNewUser(formData);
-
-    setShowPreferences(!showPreferences);
-
-    console.log(formData, preference);
-
-    if (preference) {
-      navigate("/");
-    }
+    setNewUser(formData);
+    setShowPreferences(true);
   };
 
   const submitUser = () => {
-    console.log(newUser, preference);
+    const user = { ...newUser };
+
+    if (preference && isSubmitSuccessful) {
+      user.preference = preference;
+      navigate("/");
+      reset();
+    }
   };
 
   // -------------------------FORM VALIDATION-----------------------------------------
@@ -63,7 +62,7 @@ const RegisterPage = () => {
           <button
             type="button"
             className="prev_btn"
-            onClick={() => setShowPreferences(!showPreferences)}
+            onClick={() => setShowPreferences(false)}
           >
             <AiOutlineArrowLeft /> Previous
           </button>
@@ -191,6 +190,7 @@ const RegisterPage = () => {
                             name="preference"
                             value="minimal"
                             onChange={(e) => setPreference(e.target.value)}
+                            checked={preference === "minimal"}
                           />
                           <span></span>
                         </label>
@@ -203,6 +203,7 @@ const RegisterPage = () => {
                             name="preference"
                             value="alte"
                             onChange={(e) => setPreference(e.target.value)}
+                            checked={preference === "alte"}
                           />
                           <span></span>
                         </label>
@@ -215,6 +216,7 @@ const RegisterPage = () => {
                             name="preference"
                             value="modern"
                             onChange={(e) => setPreference(e.target.value)}
+                            checked={preference === "modern"}
                           />
                           <span></span>
                         </label>
@@ -223,9 +225,9 @@ const RegisterPage = () => {
                   )}
                 </div>
                 <button
-                  type="submit"
+                  type="button"
                   className="submit_btn"
-                  // onClick={setNewUser}
+                  onClick={submitUser}
                 >
                   Finish
                 </button>

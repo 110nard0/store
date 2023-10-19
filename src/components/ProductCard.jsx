@@ -6,9 +6,9 @@ import image1 from "../assets/images/image1.jpg";
 import image2 from "../assets/images/image2.jpg";
 import { Link } from "react-router-dom";
 
-const ProductCard = () => {
+const ProductCard = ({ id }) => {
   return (
-    <Link to="/products/1" className="product-card">
+    <Link to={`/products/${id}`} className="product-card">
       <div className="product-card_preview">
         <img src={image1} alt="cloth preview" className="front-img" />
         <img src={image2} alt="cloth preview" className="back-img" />

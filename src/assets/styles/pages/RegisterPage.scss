@@ -2,9 +2,6 @@
 @use "./LoginPage.scss" as *;
 
 .prev_container {
-  max-width: 80rem;
-  width: 90%;
-  margin-inline: auto;
   margin-bottom: 1.3rem;
   .prev_btn {
     @include btnSecondary;
