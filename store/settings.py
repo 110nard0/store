@@ -196,13 +196,12 @@ SIMPLE_JWT = {
 
 # Email configuration
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.trgst.com'
-EMAIL_HOST_USER = 'holla@trgst.com'
-EMAIL_HOST_PASSWORD = 'PtCHK@$Kj1'
-EMAIL_PORT = 587
-
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_USE_SSL = config('EMAIL_USE_SSL')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = int(config('EMAIL_PORT'))
 
 # Ensure that not all origins are allowed, and then explicitly specify allowed origins
 
