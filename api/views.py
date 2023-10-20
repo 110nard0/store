@@ -53,3 +53,10 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     # permission_classes = [IsAdminUser]
+
+
+# Status view
+
+@api_view(['GET'])
+def stats(request):
+    return Response({"status": 'OK'}, status=status.HTTP_200_OK)
