@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 from decouple import config
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,13 +89,16 @@ WSGI_APPLICATION = 'store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+DATABASES = {
+    'default': dj_database_url.parse(config("DATABASE_URL"))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -197,7 +201,7 @@ SIMPLE_JWT = {
 # Email configuration
 
 EMAIL_BACKEND = config('EMAIL_BACKEND')
-EMAIL_USE_SSL = config('EMAIL_USE_SSL')
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=True, cast=bool)
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
