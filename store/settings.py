@@ -28,8 +28,10 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 # ALLOWED_HOSTS = ['trgst.com', 'www.trgst.com']
-# ALLOWED_HOSTS = ['3.75.158.163', '3.125.183.140', '35.157.117.28']
-ALLOWED_HOSTS = ['https://trgst-product-app.onrender.com']
+ALLOWED_HOSTS = [
+    'https://trgst-product-app.onrender.com',
+    '3.75.158.163', '3.125.183.140', '35.157.117.28',
+]
 
 
 # Application definition
