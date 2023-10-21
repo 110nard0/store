@@ -1,6 +1,5 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
-# from dj_rest_auth.registration.serializers import RegisterSerializer as DefaultRegisterSerializer
 
 from .models import CustomUser, Product, WaitlistUser
 
@@ -19,12 +18,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
             user.set_password(password)
         user.save()
         return user
-
-
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = []
 
 
 class WaitlistUserSerializer(serializers.ModelSerializer):

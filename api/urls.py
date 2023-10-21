@@ -18,6 +18,7 @@ router.register(r'products', ProductViewSet)
 app_name = "api"
 urlpatterns = [
     path('', include(router.urls)),
+    path('status/', views.stats, name='status'),
     path('login/', LoginView.as_view(), name='login'),
     path('register/', CustomUserRegister.as_view(), name='register'),
 
