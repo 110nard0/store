@@ -213,12 +213,15 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = int(config('EMAIL_PORT'))
 
+
 # Ensure that not all origins are allowed, and then explicitly specify allowed origins
 
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    # "http://localhost:5173",
+    'http://localhost:5173',
+    'https://trgst.vercel.app',
+    'https://trgst.store',
 ]
 
 
@@ -227,11 +230,11 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_HEADERS = [
-    "content-type",
-    "accept",
-    "origin",
-    "Authorization",
-    "x-csrftoken",
+    'content-type',
+    'accept',
+    'origin',
+    'Authorization',
+    'x-csrftoken',
 ]
 
 
