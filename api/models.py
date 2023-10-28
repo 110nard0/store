@@ -26,7 +26,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """
     """
     date_joined = models.DateTimeField(auto_now_add=True)
-    email = models.EmailField(unique=True, blank=False)
+    email = models.EmailField(unique=True, db_index=True, blank=False)
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
     password = models.CharField(max_length=255)

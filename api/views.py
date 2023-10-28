@@ -1,12 +1,19 @@
 from django.contrib.auth import authenticate, login
 from rest_framework import generics, mixins, status, views, viewsets
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import CustomUser, Product, WaitlistUser
-from .serializers import CustomUserSerializer, LoginSerializer, ProductSerializer, WaitlistUserSerializer
+
+from .models import (
+    CustomUser, Product, WaitlistUser
+)
+
+from .serializers import (
+    CustomUserSerializer, LoginSerializer,
+    ProductSerializer, WaitlistUserSerializer
+)
 
 
 class CustomUserRegister(generics.CreateAPIView):
@@ -15,19 +22,56 @@ class CustomUserRegister(generics.CreateAPIView):
 
 
 class CustomUserList(mixins.ListModelMixin,
-                     mixins.RetrieveModelMixin,
                      viewsets.GenericViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = CustomUser.objects.all()
+
+        # Get identifier from request, it can be an 'id' or 'email'
+        identifier = self.request.query_params.get('identifier', None)
+
+        if identifier:
+            # Try to filter by ID first
+            try:
+                id_value = int(identifier)
+                queryset = queryset.filter(id=id_value)
+            except ValueError:
+                # If not an integer, filter by email
+                queryset = queryset.filter(email=identifier)
+
+        return queryset
 
 
 class WaitlistUserViewSet(mixins.CreateModelMixin,
                           mixins.ListModelMixin,
-                          mixins.RetrieveModelMixin,
                           viewsets.GenericViewSet):
     queryset = WaitlistUser.objects.all()
     serializer_class = WaitlistUserSerializer
+    # permission_classes = [IsAdminUser]
+
+    def get_queryset(self):
+        queryset = WaitlistUser.objects.all()
+
+        identifier = self.request.query_params.get('identifier', None)
+
+        if identifier:
+            try:
+                id_value = int(identifier)
+                queryset = queryset.filter(id=id_value)
+            except ValueError:
+                queryset = queryset.filter(email=identifier)
+
+        return queryset
+
+    def create(self, request, *args, **kwargs):
+        email = request.data.get('email')
+        if WaitlistUser.objects.filter(email=email).exists():
+            content = {"detail": "Email is already on the waitlist"}
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
+        return super().create(request, *args, **kwargs)
 
 
 class LoginView(views.APIView):
@@ -52,7 +96,7 @@ class LoginView(views.APIView):
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUser]
 
 
 # Status view
