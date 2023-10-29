@@ -33,6 +33,7 @@ DEBUG = False
 # ALLOWED_HOSTS = ['trgst.com', 'www.trgst.com']
 ALLOWED_HOSTS = [
     # '127.0.0.1',
+	'trgst.com',
     'trgst-product-app.onrender.com',
 ]
 
