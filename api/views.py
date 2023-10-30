@@ -20,13 +20,6 @@ class CustomUserRegister(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 
-
-class CustomUserList(mixins.ListModelMixin,
-                     viewsets.GenericViewSet):
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
-    permission_classes = [IsAuthenticated]
-
     def get_queryset(self):
         queryset = CustomUser.objects.all()
 
@@ -43,6 +36,34 @@ class CustomUserList(mixins.ListModelMixin,
                 queryset = queryset.filter(email=identifier)
 
         return queryset
+
+
+class CustomUserList(mixins.ListModelMixin,
+                     viewsets.GenericViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = WaitlistUser.objects.all()
+
+        identifier = self.request.query_params.get('identifier', None)
+
+        if identifier:
+            try:
+                id_value = int(identifier)
+                queryset = queryset.filter(id=id_value)
+            except ValueError:
+                queryset = queryset.filter(email=identifier)
+
+        return queryset
+
+    def create(self, request, *args, **kwargs):
+        email = request.data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            content = {"error": "Email is already registered"}
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
+        return super().create(request, *args, **kwargs)
 
 
 class WaitlistUserViewSet(mixins.CreateModelMixin,
@@ -69,7 +90,7 @@ class WaitlistUserViewSet(mixins.CreateModelMixin,
     def create(self, request, *args, **kwargs):
         email = request.data.get('email')
         if WaitlistUser.objects.filter(email=email).exists():
-            content = {"detail": "Email is already on the waitlist"}
+            content = {"error": "Email is already on the waitlist"}
             return Response(content, status=status.HTTP_400_BAD_REQUEST)
         return super().create(request, *args, **kwargs)
 
