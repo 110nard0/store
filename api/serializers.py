@@ -1,8 +1,10 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import CustomUser, Product, WaitlistUser
 
+# User serializers
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,13 +28,7 @@ class WaitlistUserSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'email']
 
 
-# Authentication utilities
-# class CustomRegisterSerializer(DefaultRegisterSerializer):
-#     username = None
-
-#     class Meta:
-#         model = CustomUser
-#         fields = ('email', 'password')
+# Authentication serializers
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
@@ -59,6 +55,22 @@ class LoginSerializer(serializers.Serializer):
                 'Must include "email" and "password".')
         return data
 
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['first_name'] = user.first_name
+        token['last_name'] = user.last_name
+        token['email'] = user.email
+        token['is_staff'] = user.is_staff
+
+        return token
+
+
+# Product serializers
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:

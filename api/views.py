@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 from .models import (
@@ -11,8 +12,8 @@ from .models import (
 )
 
 from .serializers import (
-    CustomUserSerializer, LoginSerializer,
-    ProductSerializer, WaitlistUserSerializer
+    CustomUserSerializer, CustomTokenObtainPairSerializer,
+    LoginSerializer, ProductSerializer, WaitlistUserSerializer
 )
 
 
@@ -20,22 +21,11 @@ class CustomUserRegister(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 
-    def get_queryset(self):
-        queryset = CustomUser.objects.all()
-
-        # Get identifier from request, it can be an 'id' or 'email'
-        identifier = self.request.query_params.get('identifier', None)
-
-        if identifier:
-            # Try to filter by ID first
-            try:
-                id_value = int(identifier)
-                queryset = queryset.filter(id=id_value)
-            except ValueError:
-                # If not an integer, filter by email
-                queryset = queryset.filter(email=identifier)
-
-        return queryset
+    def create(self, request, *args, **kwargs):
+        email = request.data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            return Response({"message": "Email is already registered"}, status=status.HTTP_400_BAD_REQUEST)
+        return super().create(request, *args, **kwargs)
 
 
 class CustomUserList(mixins.ListModelMixin,
@@ -45,7 +35,7 @@ class CustomUserList(mixins.ListModelMixin,
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = WaitlistUser.objects.all()
+        queryset = CustomUser.objects.all()
 
         identifier = self.request.query_params.get('identifier', None)
 
@@ -57,13 +47,6 @@ class CustomUserList(mixins.ListModelMixin,
                 queryset = queryset.filter(email=identifier)
 
         return queryset
-
-    def create(self, request, *args, **kwargs):
-        email = request.data.get('email')
-        if CustomUser.objects.filter(email=email).exists():
-            content = {"error": "Email is already registered"}
-            return Response(content, status=status.HTTP_400_BAD_REQUEST)
-        return super().create(request, *args, **kwargs)
 
 
 class WaitlistUserViewSet(mixins.CreateModelMixin,
@@ -90,8 +73,7 @@ class WaitlistUserViewSet(mixins.CreateModelMixin,
     def create(self, request, *args, **kwargs):
         email = request.data.get('email')
         if WaitlistUser.objects.filter(email=email).exists():
-            content = {"error": "Email is already on the waitlist"}
-            return Response(content, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Email is already on the waitlist"}, status=status.HTTP_400_BAD_REQUEST)
         return super().create(request, *args, **kwargs)
 
 
@@ -112,6 +94,10 @@ class LoginView(views.APIView):
             access_token = str(refresh.access_token)
             return Response({"access": access_token, "refresh": refresh_token}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):

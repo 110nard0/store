@@ -204,6 +204,7 @@ SITE_ID = 1
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+	"TOKEN_OBTAIN_SERIALIZER": 'api.serializers.CustomTokenObtainPairSerializer',
 }
 
 
