@@ -251,16 +251,16 @@ CORS_ALLOW_HEADERS = [
 
 # Only communicate with site using HTTPS
 
-# SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_SECONDS = 31536000
 
 # Redirect all requests to HTTPS if they come in as HTTP
 
-# SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
 
 # Send Cookies over non-secure connections
 
-# SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 # Send CSRF token over non-secure connections
 
-# CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
