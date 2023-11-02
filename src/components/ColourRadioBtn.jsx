@@ -1,22 +1,19 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-import "../assets/styles/component/ColourRadioBtn.scss";
+import "@asset/component/ColourRadioBtn.scss";
 
-const ColourRadioBtn = ({ changeHandler, checked, colour }) => {
+const ColourRadioBtn = forwardRef((props, ref) => {
   return (
     <div className="radio-item">
       <label>
-        <input
-          type="radio"
-          name="colours"
-          value={colour}
-          onChange={changeHandler}
-          checked={checked}
-        />
-        <span style={{ "--clr": colour }}></span>
+        <input type="radio" {...props} ref={ref} />
+        <span className="radio_btn" style={{ "--clr": props.colour }}></span>
+        <span className="colour_tag" style={{ "--txt": props.textclr }}>
+          {props.label}
+        </span>
       </label>
     </div>
   );
-};
+});
 
 export default ColourRadioBtn;

@@ -1,16 +1,37 @@
 import React from "react";
-import image from "../assets/images/image2.jpg";
+
+import "@asset/component/CartProductCard.scss";
+
+import image from "@images/image2.jpg";
+
+import { App } from "antd";
 import { MdDeleteOutline } from "react-icons/md";
-import { cartContext } from "../store/context";
-import QuantityInput from "./QuantityInput";
+import { PiSmileySadBold } from "react-icons/pi";
+import { cartContext } from "@store/context.jsx";
+import QuantityInput from "@components/QuantityInput.jsx";
 
 const CartProductCard = ({ product }) => {
   const { dispatch } = cartContext();
+
+  const { message, notification } = App.useApp();
 
   const removeFromCart = (item) => {
     dispatch({
       type: "REMOVE_FROM_CART",
       payload: item,
+    });
+
+    notification.info({
+      message: "REMOVED FROM CART",
+      description: `${item.title} removed from cart`,
+      // placement: "top",
+      icon: (
+        <PiSmileySadBold
+          style={{
+            color: "#f59e0b",
+          }}
+        />
+      ),
     });
   };
 
@@ -25,31 +46,33 @@ const CartProductCard = ({ product }) => {
   };
 
   return (
-    <div className="cart_item" key={product.id}>
-      <img src={image} alt="pic of a model" className="product_image" />
-      <div className="product_detail">
-        <p className="product_detail__name">{product.title}</p>
-        <p className="product_detail__price">₦{product.price}</p>
+    <>
+      <div className="cart_item" key={product.id}>
+        <img src={image} alt="pic of a model" className="product_image" />
+        <div className="product_detail">
+          <h2 className="product_detail__name">{product.title}</h2>
+          <h2 className="product_detail__price">₦{product.price}</h2>
 
-        <span className="product_detail__preference">Medium(M)/Yellow</span>
-      </div>
-      <div className="product_cta">
-        <button
-          type="button"
-          className="delete_btn"
-          onClick={() => removeFromCart(product)}
-        >
-          <MdDeleteOutline size={30} />
-        </button>
+          <h4 className="product_detail__preference">Medium(M)/Yellow</h4>
+        </div>
+        <div className="product_cta">
+          <button
+            type="button"
+            className="delete_btn"
+            onClick={() => removeFromCart(product)}
+          >
+            <MdDeleteOutline size={30} />
+          </button>
 
-        <QuantityInput
-          quantity={product.quantity}
-          stock={product.stock}
-          productId={product.id}
-          setQuantity={updateCart}
-        />
+          <QuantityInput
+            quantity={product.quantity}
+            stock={product.stock}
+            productId={product.id}
+            setQuantity={updateCart}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

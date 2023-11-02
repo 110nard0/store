@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../assets/styles/component/CheckBox.scss";
+import "@asset/component/CheckBox.scss";
 
 const CheckBox = ({ name, value, title, onchange, checked }) => {
   return (
