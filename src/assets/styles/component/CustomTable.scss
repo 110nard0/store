@@ -1,0 +1,64 @@
+@use "../index.scss" as *;
+
+.table {
+  width: 100%;
+  //   border: 1px solid green;
+  border-collapse: collapse;
+  font-family: $ff-be-viet;
+
+  &_head {
+    tr {
+      text-align: left;
+      background: getClr($colors, "primary", 800);
+      th {
+        font-family: $ff-be-viet;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 700;
+        color: getClr($colors, "primary", 50);
+        padding: 0.75rem 1.5rem;
+        width: 18.7rem;
+        &:not(:first-of-type) {
+          border-left: rem(1) solid #3e3e3e;
+        }
+      }
+      @include mobile {
+        min-width: 4.5rem;
+        th {
+          min-width: 4.5rem;
+          padding-block: 0.5rem;
+          font-size: 0.75rem;
+          width: 0;
+          padding-inline: 0.8rem 0;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      text-align: left;
+      &:first-of-type td {
+        border-top: none;
+      }
+
+      td {
+        color: getClr($colors, "primary", 100);
+        padding: 0.75rem 1.5rem;
+        border: rem(1) solid #3e3e3e;
+        &:first-of-type {
+          border-left: none;
+        }
+        &:last-of-type {
+          border-right: none;
+        }
+
+        @include mobile {
+          max-width: 5rem;
+          padding: 0.5rem 1rem;
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+}

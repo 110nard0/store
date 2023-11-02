@@ -2,14 +2,15 @@
 
 .navbar {
   max-width: 80rem;
-  width: 90%;
+  width: 93%;
   background: getClr($colors, "primary", 900);
   border: rem(1.5) solid getClr($colors, "primary", 200);
   position: fixed;
-  top: 3rem;
+  top: 2rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(1);
   z-index: 100;
+  transition: all 2s cubic-bezier(0.47, 1.64, 0.41, 0.8);
 
   &-nav {
     @include alignCenter;
@@ -23,6 +24,10 @@
       color: getClr($colors, "primary", 200);
     }
 
+    .navbar-nav_bag {
+      color: getClr($colors, "primary", 200);
+    }
+
     &_logo {
       max-width: 14.7455rem;
       svg {
@@ -32,11 +37,11 @@
 
     &_links {
       @include alignCenter;
-      column-gap: 4rem;
-      max-width: 29.25rem;
+      justify-content: space-between;
 
       > li {
         @include btnNeutral;
+        margin-inline: 2rem;
       }
     }
 
@@ -84,12 +89,11 @@
         margin-left: auto;
         margin-right: 1.75rem;
       }
-
-      .navbar-nav_menu-icon {
-        @include alignCenter;
-        justify-content: center;
-      }
     }
+  }
+
+  @include mobile {
+    top: 1rem;
   }
 
   .backdrop {
@@ -107,6 +111,15 @@
     &.show-backdrop {
       opacity: 0.8;
       visibility: visible;
+    }
+  }
+
+  &.hide_nav {
+    transform: translate(-50%, -52%) scale(0.8, 0.8);
+    transition: transform 0.8s ease;
+
+    @include mobile {
+      transform: translate(-50%, -35%) scale(0.8);
     }
   }
 }

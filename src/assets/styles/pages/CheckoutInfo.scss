@@ -1,0 +1,174 @@
+@use "../index" as *;
+
+.checkout_info {
+  .heading {
+    padding-bottom: 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.04375rem;
+    color: getClr($colors, "primary", 0);
+    border-bottom: rem(1) solid getClr($colors, "primary", 600);
+  }
+
+  &-form {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+
+    .state_container {
+      .label {
+        display: block;
+        color: getClr($colors, "primary", 500);
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .preference_box {
+        margin-block: 0.5rem;
+        display: block;
+        width: 100%;
+        height: 2.63rem;
+
+        &.error {
+          border: rem(1) solid getClr($colors, "error", 500);
+        }
+      }
+
+      .preference_select {
+        gap: 0.5rem;
+
+        .search_container {
+          width: 100%;
+          @include alignCenter;
+          border: rem(1) solid getClr($colors, "primary", 600);
+          height: 2.63rem;
+          padding-inline: 0.75rem;
+
+          svg {
+            color: getClr($colors, "primary", 400);
+          }
+
+          .search_input {
+            margin-left: 0.75rem;
+            width: 100%;
+            height: 100%;
+            background: none;
+            border: none;
+            outline: none;
+            color: getClr($colors, "primary", 50);
+
+            &::placeholder {
+              font-size: 1rem;
+              font-weight: 400;
+              font-family: $ff-red-rose;
+            }
+          }
+        }
+
+        .states_option {
+          width: 100%;
+          max-height: 8rem;
+          overflow-y: auto;
+
+          & > div {
+            margin-bottom: 0.3rem;
+            &:hover {
+              background: getClr($colors, "primary", 800);
+            }
+
+            label {
+              width: 100%;
+              height: 100%;
+
+              padding-block: 0.5rem;
+              input {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      .error_field {
+        @include alignCenter;
+        color: getClr($colors, "error", 500);
+        gap: 0.5rem;
+      }
+    }
+
+    .impact_container {
+      .label {
+        color: getClr($colors, "primary", 500);
+        font-size: 1rem;
+
+        .sublabel {
+          color: getClr($colors, "primary", 200);
+          font-size: 0.875rem;
+          font-weight: 400;
+          margin-top: 0.5rem;
+
+          .social_link {
+            text-decoration: underline;
+            line-height: 1.375rem;
+            &:hover {
+              color: getClr($colors, "primary", 50);
+            }
+          }
+          @include mobile {
+            font-size: 0.75rem;
+          }
+        }
+      }
+
+      .wrap {
+        .option_items {
+          display: flex;
+          flex-direction: column;
+
+          & > div {
+            margin-bottom: 0.3rem;
+            &:hover {
+              background: getClr($colors, "primary", 800);
+            }
+
+            label {
+              width: 100%;
+              height: 100%;
+
+              padding-block: 0.5rem;
+              input {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      .error_field {
+        @include alignCenter;
+        color: getClr($colors, "error", 500);
+        gap: 0.5rem;
+      }
+    }
+
+    .submit_btn {
+      @include btnPrimary;
+    }
+  }
+
+  @include mobile {
+    .heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.0375rem;
+      padding-bottom: 1.5rem;
+    }
+    &-form {
+      margin-top: 1.5rem;
+      gap: 1.5rem;
+    }
+  }
+}

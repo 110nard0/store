@@ -1,41 +1,40 @@
 @use "../index.scss" as *;
 
 .products {
-  padding-top: 5.5rem;
-
   &_header {
     @include alignCenter;
     justify-content: space-between;
-    // margin-bottom: 4.3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 5;
 
     &__heading {
       font-size: 1.75rem;
       font-weight: 700;
       color: getClr($colors, "primary", 0);
       text-transform: uppercase;
-      background: getClr($colors, "primary", 900);
-      padding: 0.45em 1.25em;
-      border: rem(1.5) solid getClr($colors, "primary", 200);
     }
   }
 
   &_display {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    > .skeleton {
+      background: red !important;
+    }
   }
 
   @include tablet {
+    padding-top: 3.2rem;
+    margin-block: 2.3rem 1rem !important;
     &_display {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @include mobile {
-    padding-top: 2rem;
-
     &_header {
-      margin-bottom: 1.3rem;
-      top: 7.3rem !important;
+      margin-bottom: 0.8rem;
       &__heading {
         font-size: 1.25rem;
       }
@@ -44,9 +43,6 @@
         top: 8rem;
         right: 5%;
       }
-    }
-    &_display {
-      // grid-template-columns: repeat(2, 1fr);
     }
   }
 }

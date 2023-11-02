@@ -6,6 +6,10 @@
   .prev_btn {
     @include btnSecondary;
   }
+
+  @include mobile {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .register-page {

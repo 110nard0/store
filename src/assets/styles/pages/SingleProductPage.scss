@@ -4,6 +4,7 @@
   .back_container {
     .prev_btn {
       @include btnSecondary;
+      padding: 0.5em 1em;
     }
   }
 
@@ -14,7 +15,7 @@
     width: 100%;
     padding-bottom: 4.5rem;
     border-bottom: 1px solid getClr($colors, "primary", 600);
-    margin-top: 13rem;
+    margin-top: 10.5rem;
 
     &_left {
       width: 58%;
@@ -84,45 +85,7 @@
       }
 
       .size_container {
-        .preference_box {
-          @include alignCenter;
-          padding: 0.5rem 1.25rem;
-          justify-content: space-between;
-          color: getClr($colors, "primary", 50);
-          margin-bottom: 0.25rem;
-          background: getClr($colors, "primary", 800);
-          border: rem(1.5) solid transparent;
-          user-select: none;
-          cursor: pointer;
-          transition: all 0.3s ease;
-
-          &:hover {
-            background: getClr($colors, "primary", 700);
-          }
-
-          &.open {
-            border: rem(1.5) solid getClr($colors, "primary", 50);
-            background: none;
-
-            svg {
-              transform: rotate(180deg);
-            }
-          }
-        }
-
-        .preference_select {
-          display: flex;
-          padding: 1rem;
-          align-items: center;
-          gap: 1.25rem 2.5rem;
-          flex-wrap: wrap;
-          border: rem(1.5) solid getClr($colors, "primary", 50);
-          background: getClr($colors, "primary", 800);
-
-          .radio-group {
-            @include radioGroup;
-          }
-        }
+        @include selectGroup;
       }
 
       .cta_btns {
@@ -209,6 +172,7 @@
     &__heading {
       color: getClr($colors, "primary", 50);
       margin-bottom: 1.5rem;
+      font-size: 1rem;
     }
 
     .recommend_items {
@@ -221,10 +185,10 @@
   @include mobile {
     .back_container {
       left: 5%;
-      top: 7.3rem !important;
+      top: 5.3rem !important;
     }
     .product_display {
-      margin-top: 11rem;
+      margin-top: 8.4rem;
       flex-direction: column;
 
       > div {

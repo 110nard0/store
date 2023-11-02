@@ -1,6 +1,6 @@
 @use "../index.scss" as *;
 
-.icons {
+.share_icons {
   @include alignCenter;
   justify-content: space-around;
   .icon {
@@ -12,27 +12,23 @@
     border-radius: 10rem;
     background: getClr($colors, "primary", 100);
     color: getClr($colors, "primary", 900);
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
 
     &:hover {
       background: getClr($colors, "primary", 0);
+      scale: 1.05;
     }
-  }
-
-  .btn_instagram {
-    outline: none;
-    background: none;
-    width: auto;
-    height: auto;
-    border: none;
   }
 
   .btn_sec {
     @include btnSecondary;
+    width: 2.8rem;
+    height: 2.8rem;
     color: getClr($colors, "primary", 100);
     font-size: rem(25);
-    padding: unset;
+    padding: 0;
+    border-radius: 100%;
     position: relative;
 
     .tooltip {

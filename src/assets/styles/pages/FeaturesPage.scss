@@ -35,6 +35,24 @@
     border: rem(1) solid getClr($colors, "primary", 50);
     padding: 2.5rem;
     margin-block: 3rem;
+
+    .size_header {
+      padding-bottom: 2.5rem;
+      border-bottom: rem(1) solid getClr($colors, "primary", 600);
+      .heading {
+        margin-bottom: 0.5rem;
+        color: getClr($colors, "primary", 0);
+        font-size: 1.75rem;
+      }
+    }
+
+    .title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-block: 2.5rem;
+      color: getClr($colors, "primary", 0);
+      text-transform: uppercase;
+    }
   }
 
   .sharing_container {
@@ -52,6 +70,27 @@
         .heading {
           font-size: 1.5rem;
         }
+      }
+    }
+
+    .sizing_container {
+      margin-block: 2.5rem;
+      padding: 1.5rem;
+      .size_header {
+        padding-bottom: 1rem;
+        // border: none;
+        .heading {
+          font-size: 1.5rem;
+        }
+
+        .size_subheading {
+          font-size: 0.75rem;
+        }
+      }
+
+      .title {
+        margin-block: 0.5rem 1rem;
+        font-size: 0.85rem;
       }
     }
 

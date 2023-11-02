@@ -1,7 +1,7 @@
 @use "./colours" as *;
 @use "./functions" as *;
 
-$bdr-clr: getClr($colors, "primary", 0);
+$bdr-clr: getClr($colors, "primary", 100);
 
 // ------------FONTS-------------------
 

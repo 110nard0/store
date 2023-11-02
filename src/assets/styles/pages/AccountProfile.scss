@@ -1,0 +1,89 @@
+@use "@asset" as *;
+
+.select_container {
+  .label {
+    color: getClr($colors, "primary", 500);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .preference_select {
+    gap: 0.5rem;
+
+    .search_container {
+      width: 100%;
+      @include alignCenter;
+      border: rem(1) solid getClr($colors, "primary", 600);
+      height: 2.63rem;
+      padding-inline: 0.75rem;
+
+      svg {
+        color: getClr($colors, "primary", 400);
+      }
+
+      .search_input {
+        margin-left: 0.75rem;
+        width: 100%;
+        height: 100%;
+        background: none;
+        border: none;
+        outline: none;
+        color: getClr($colors, "primary", 50);
+
+        &::placeholder {
+          font-size: 1rem;
+          font-weight: 400;
+          font-family: $ff-red-rose;
+        }
+      }
+    }
+
+    .states_option {
+      width: 100%;
+      max-height: 8rem;
+      overflow-y: auto;
+
+      & > div {
+        margin-bottom: 0.3rem;
+        &:hover {
+          background: getClr($colors, "primary", 800);
+        }
+
+        label {
+          width: 100%;
+          height: 100%;
+
+          padding-block: 0.5rem;
+          input {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+.new_address {
+  padding-bottom: 1.75rem;
+  border-bottom: rem(1) solid getClr($colors, "primary", 600);
+
+  &-btn {
+    @include btnNeutral;
+
+    > svg {
+      font-size: rem(20);
+    }
+  }
+}
+
+.save_btn {
+  @include btnPrimary;
+}
+
+.delete_btn {
+  @include btnNeutral;
+  width: 100%;
+  align-self: center;
+  display: block;
+}

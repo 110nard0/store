@@ -2,29 +2,32 @@
 
 .radio-item {
   user-select: none;
+
   label {
-    display: inline-block;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
     position: relative;
     padding-inline-start: rem(35);
-    cursor: pointer;
 
     input {
       display: none;
 
-      &:checked ~ span {
+      &:checked ~ .radio_btn {
         border-color: getClr($colors, "primary", 50);
+
         &::after {
           transform: translate(-50%, -50%) scale(0.8);
         }
       }
     }
 
-    span {
+    .radio_btn {
       width: 1.5rem;
       height: 1.5rem;
       border: rem(2) solid var(--clr);
       border-radius: 50%;
-      display: block;
+      display: inline-block;
       position: absolute;
       left: 0;
       top: 50%;
@@ -44,8 +47,14 @@
       }
     }
 
-    &:hover span {
+    &:hover .radio_btn {
       transform: translateY(-50%) scale(1.05);
+    }
+    .colour_tag {
+      color: var(--txt);
+      position: absolute;
+      left: 2rem;
+      font-size: 1rem;
     }
   }
 }

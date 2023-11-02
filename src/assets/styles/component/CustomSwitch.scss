@@ -1,0 +1,43 @@
+@use "../index.scss" as *;
+
+.switch {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch_label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 48px;
+  height: 25px;
+  background: getClr($colors, "neutral", 700);
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.switch_label::after {
+  content: "";
+  position: absolute;
+  top: 2.5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background: getClr($colors, "neutral", 50);
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+.switch:checked + .switch_label {
+  background: getClr($colors, "success", 600);
+}
+
+.switch:checked + .switch_label::after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.switch_label:active::after {
+  width: 130px;
+}

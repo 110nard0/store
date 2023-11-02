@@ -1,0 +1,54 @@
+@use "../index.scss" as *;
+
+.select_field {
+  @include alignCenter;
+  padding-inline-end: 1.25rem;
+  justify-content: space-between;
+  color: getClr($colors, "primary", 50);
+  margin-bottom: 0.25rem;
+  background: getClr($colors, "primary", 800);
+  border: rem(1.5) solid transparent;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  height: 2.63rem;
+
+  .value {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1.25rem;
+  }
+
+  &.error {
+    border-color: getClr($colors, "error", 500);
+  }
+
+  input {
+    width: 100%;
+    user-select: none;
+    padding-inline-start: 1.25rem;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: getClr($colors, "primary", 50);
+    font-family: inherit;
+    font-size: 1rem;
+    visibility: hidden;
+  }
+
+  &:hover {
+    background: getClr($colors, "primary", 700);
+  }
+
+  &.open {
+    border: rem(1.5) solid getClr($colors, "primary", 50);
+    background: none;
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}

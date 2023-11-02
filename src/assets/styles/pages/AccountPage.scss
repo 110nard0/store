@@ -1,0 +1,84 @@
+@use "@asset" as *;
+
+.account-page {
+  .container {
+    border: rem(2) solid $bdr-clr;
+    width: 50%;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.75rem;
+
+    .header {
+      padding-bottom: 1.75rem;
+      border-bottom: rem(1) solid getClr($colors, "primary", 600);
+      @include alignCenter;
+      gap: 0.5rem;
+
+      .avatar {
+        cursor: pointer;
+        img {
+          width: 3.75rem;
+          height: 3.75rem;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 50%;
+        }
+      }
+
+      .profile_details {
+        .profile_heading {
+          margin-bottom: 0;
+          font-size: 1.25rem;
+          font-weight: 400;
+        }
+
+        .profile_subheading {
+          font-size: 0.875rem;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .navigator {
+      @include alignCenter;
+      padding: 0.38rem;
+      gap: 1.25rem;
+      border: rem(1) solid getClr($colors, "primary", 700);
+
+      .nav-tab {
+        color: getClr($colors, "primary", 500);
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0.75rem;
+        transition: all 0.3s ease;
+        background: none;
+        outline: none;
+        border: none;
+        font-family: $ff-red-rose;
+        cursor: pointer;
+
+        &:hover {
+          color: getClr($colors, "primary", 200);
+        }
+
+        &.active {
+          color: getClr($colors, "primary", 50);
+          background: getClr($colors, "primary", 700);
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: getClr($colors, "primary", 600);
+          }
+        }
+      }
+    }
+
+    @include mobile {
+      width: 100%;
+      padding: 1.75rem 1.25rem;
+      row-gap: 1.5rem;
+    }
+  }
+}

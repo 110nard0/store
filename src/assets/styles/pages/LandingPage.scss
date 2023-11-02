@@ -1,12 +1,12 @@
 @use "../index.scss" as *;
 
 .landing-page {
-  background: url("../../../assets/images/bg-desktop.jpeg");
+  background: url("../../../assets/images/bg-desktop.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  height: rem(2000);
+  height: rem(2100);
 
   @include mobile {
     background: url("../../../assets/images/bg-mobile.png");

@@ -8,10 +8,11 @@
   align-items: center;
 }
 
-// ------BUTTONS-------------------------------
+//HDR: ------BUTTONS-------------------------------
 
 @mixin btnPrimary {
   cursor: pointer;
+  color: getClr($colors, "primary", 900);
   font-family: $ff-red-rose;
   padding: 0.75em 1.25em;
   font-size: 1rem;
@@ -20,9 +21,15 @@
   outline: none;
   border: none;
   user-select: none;
+  border-radius: 0;
+  font-weight: 400;
 
   &:hover {
     background: getClr($colors, "primary", 0);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background: getClr($colors, "primary", 300);
   }
 }
 @mixin btnSecondary {
@@ -40,6 +47,8 @@
   outline: none;
   border: rem(1.5) solid getClr($colors, "primary", 50);
   user-select: none;
+  border-radius: 0;
+  font-weight: 400;
 
   &:hover {
     background: getClr($colors, "primary", 800);
@@ -62,6 +71,7 @@
   font-size: 1rem;
   user-select: none;
   font-family: $ff-red-rose;
+  font-weight: 400;
 
   &:hover,
   &:has(a.active) {
@@ -83,28 +93,88 @@
   }
 }
 
-// -------INPUTS--------------------------------
+// SUB: CMS BUTTONS
+@mixin btnCmsPrimary {
+  padding: 0.5rem 1rem;
+  @include alignCenter;
+  column-gap: 0.25rem;
+  background: getClr($colors, "neutral", 50);
+  border-radius: 0.375rem;
+  color: getClr($colors, "neutral", 800);
+  outline: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
 
-@mixin inputGroup {
+  &:hover {
+    background: getClr($colors, "neutral", 200);
+    color: getClr($colors, "neutral", 900);
+  }
+}
+
+@mixin btnCmsSecondary {
+  padding: 0.5rem 1rem;
+  @include alignCenter;
+  column-gap: 0.25rem;
+  background: getClr($colors, "neutral", 800);
+  border-radius: 0.375rem;
+  color: getClr($colors, "neutral", 400);
+  outline: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: getClr($colors, "neutral", 700);
+    color: getClr($colors, "neutral", 100);
+  }
+}
+
+@mixin btnCmsNeutral {
+  padding: 0.5rem 1rem;
+  @include alignCenter;
+  column-gap: 0.25rem;
+  background: none;
+  border-radius: 0.375rem;
+  color: getClr($colors, "neutral", 400);
+  outline: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: getClr($colors, "neutral", 50);
+  }
+}
+
+//HDR: -------INPUTS--------------------------------
+
+@mixin textGroup {
   font-family: $ff-red-rose;
   position: relative;
   label {
     display: block;
-
+    font-size: 1rem;
     color: getClr($colors, "primary", 500);
   }
 
-  input {
+  textarea {
     padding: 1rem 1.75rem;
-    margin-block: 0.5rem;
+    margin-top: 0.5rem;
     outline: none;
     background: transparent;
     width: 100%;
+    height: 8rem;
     font-family: inherit;
+    resize: none;
     font-weight: 400;
     font-size: 1rem;
     color: getClr($colors, "primary", 100);
     border: rem(1.5) solid getClr($colors, "primary", 700);
+    border-radius: 0;
 
     &::placeholder {
       font-size: 1rem;
@@ -117,11 +187,87 @@
     }
 
     @include mobile {
-      font-size: 0.875rem;
+      padding: 1rem 1rem;
+    }
+  }
+
+  &.error {
+    textarea {
+      border-color: getClr($colors, "error", 500);
+    }
+
+    span:not(.eye-icon) {
+      @include alignCenter;
+      color: getClr($colors, "error", 500);
+      gap: 0.5rem;
+    }
+  }
+
+  &.cms {
+    label {
+      color: getClr($colors, "neutral", 500);
+      font-family: $ff-be-viet;
+    }
+
+    textarea {
+      color: getClr($colors, "neutral", 400);
+      border: rem(1.5) solid getClr($colors, "neutral", 800);
+      font-family: $ff-be-viet;
+      border-radius: 0.375rem;
 
       &::placeholder {
-        font-size: 0.875rem;
+        font-size: 1rem;
+        font-family: inherit;
+        color: getClr($colors, "neutral", 700);
       }
+
+      &:focus {
+        border-color: getClr($colors, "neutral", 500);
+      }
+    }
+
+    &.error {
+      font-family: $ff-be-viet;
+      textarea {
+        border-color: getClr($colors, "error", 500);
+      }
+    }
+  }
+}
+@mixin inputGroup {
+  font-family: $ff-red-rose;
+  position: relative;
+  label {
+    display: block;
+    font-size: 1rem;
+    color: getClr($colors, "primary", 500);
+  }
+
+  input {
+    padding: 1rem 1.75rem;
+    margin-top: 0.5rem;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    color: getClr($colors, "primary", 100);
+    border: rem(1.5) solid getClr($colors, "primary", 700);
+    border-radius: 0;
+
+    &::placeholder {
+      font-size: 1rem;
+      font-family: inherit;
+      color: getClr($colors, "primary", 700);
+    }
+
+    &:focus {
+      border-color: getClr($colors, "primary", 300);
+    }
+
+    @include mobile {
+      padding: 1rem 1rem;
     }
   }
 
@@ -153,6 +299,37 @@
       gap: 0.5rem;
     }
   }
+
+  &.cms {
+    label {
+      color: getClr($colors, "neutral", 500);
+      font-family: $ff-be-viet;
+    }
+
+    input {
+      color: getClr($colors, "neutral", 400);
+      border: rem(1.5) solid getClr($colors, "neutral", 800);
+      font-family: $ff-be-viet;
+      border-radius: 0.375rem;
+
+      &::placeholder {
+        font-size: 1rem;
+        font-family: inherit;
+        color: getClr($colors, "neutral", 700);
+      }
+
+      &:focus {
+        border-color: getClr($colors, "neutral", 500);
+      }
+    }
+
+    &.error {
+      font-family: $ff-be-viet;
+      input {
+        border-color: getClr($colors, "error", 500);
+      }
+    }
+  }
 }
 
 @mixin radioGroup {
@@ -162,14 +339,20 @@
     position: relative;
     padding-inline-start: rem(35);
     cursor: pointer;
+    font-size: 1rem;
+    color: getClr($colors, "primary", 500);
 
     input {
       display: none;
 
       &:checked ~ span {
         border-color: getClr($colors, "primary", 50);
+
         &::after {
+          top: 50%;
+          left: 50%;
           transform: translate(-50%, -50%) scale(1);
+          background: getClr($colors, "primary", 50);
         }
       }
     }
@@ -200,8 +383,11 @@
       }
     }
 
-    &:hover span {
-      border-color: getClr($colors, "primary", 50);
+    &:hover {
+      color: getClr($colors, "primary", 50);
+      span {
+        border-color: getClr($colors, "primary", 50);
+      }
     }
   }
 }
@@ -213,6 +399,7 @@
     padding-inline-start: rem(35);
     cursor: pointer;
     color: getClr($colors, "primary", 0);
+    font-size: 1rem;
 
     input {
       display: none;
@@ -257,7 +444,52 @@
   }
 }
 
-// -------CONTAINER--------------------------------
+@mixin selectGroup {
+  .preference_box {
+    @include alignCenter;
+    padding: 0.5rem 1.25rem;
+    justify-content: space-between;
+    color: getClr($colors, "primary", 50);
+    margin-bottom: 0.25rem;
+    background: getClr($colors, "primary", 800);
+    border: rem(1.5) solid transparent;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: getClr($colors, "primary", 700);
+    }
+
+    &.open {
+      border: rem(1.5) solid getClr($colors, "primary", 50);
+      background: none;
+
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .preference_select {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    gap: 1.25rem 2.5rem;
+    flex-wrap: wrap;
+    border: rem(1.5) solid getClr($colors, "primary", 50);
+    background: getClr($colors, "primary", 800);
+  }
+}
+
+@mixin selectDropDown {
+  padding: 1rem;
+  align-items: center;
+  border: rem(1.5) solid getClr($colors, "primary", 50);
+  background: getClr($colors, "primary", 800);
+}
+
+//HDR: -------CONTAINER--------------------------------
 
 @mixin twoGridContainer($frac) {
   border: rem(2) solid getClr($colors, "primary", 200);

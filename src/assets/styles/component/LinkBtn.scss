@@ -3,9 +3,11 @@
 .link {
   cursor: pointer;
   color: getClr($colors, "primary", 200);
+  font-size: 1rem;
 
   &:hover {
     text-decoration: underline;
     text-underline-offset: rem(4);
+    color: getClr($colors, "primary", 200);
   }
 }

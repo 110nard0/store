@@ -1,0 +1,119 @@
+@use "../index" as *;
+
+.orders {
+  .heading {
+    padding-bottom: 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: getClr($colors, "primary", 0);
+    letter-spacing: 0.04375rem;
+    border-bottom: rem(1) solid getClr($colors, "primary", 600);
+  }
+
+  .details {
+    padding-block: 1.5rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    border-bottom: rem(1) solid getClr($colors, "primary", 600);
+
+    &_info {
+      @include alignCenter;
+      justify-content: space-between;
+
+      &-title {
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.04375rem;
+        color: getClr($colors, "primary", 200);
+        text-transform: uppercase;
+      }
+
+      &-value {
+        font-size: 1.125rem;
+        color: getClr($colors, "primary", 50);
+        font-weight: 400;
+      }
+    }
+  }
+
+  .disclaimer {
+    @include alignCenter;
+    padding: 0.75rem;
+    gap: 0.75rem;
+    background: getClr($colors, "primary", 800);
+
+    &_icon {
+      color: getClr($colors, "warning", 500);
+      font-size: 2.5rem;
+      line-height: 1.5rem;
+    }
+    &_text {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.625rem;
+      color: getClr($colors, "primary", 200);
+
+      .click_link {
+        text-decoration: underline;
+        text-underline-offset: 0.2rem;
+
+        &:hover {
+          color: getClr($colors, "primary", 50);
+        }
+      }
+    }
+  }
+  .payment_btn {
+    margin-top: 1.75rem;
+    @include btnPrimary;
+    width: 100%;
+  }
+
+  @include mobile {
+    .heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.0375rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .details {
+      padding-block: 1.5rem;
+      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+
+      &_info {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 0.75rem;
+
+        &-title {
+          font-size: 0.75rem;
+          letter-spacing: 0.0375rem;
+        }
+
+        &-value {
+          font-size: 1rem;
+          line-height: 1.625rem;
+        }
+      }
+    }
+
+    .disclaimer {
+      align-items: flex-start;
+      &_icon {
+        font-size: 1.75rem;
+      }
+      &_text {
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+      }
+    }
+
+    .payment_btn {
+      margin-top: 1.5rem;
+    }
+  }
+}

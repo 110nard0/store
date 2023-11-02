@@ -1,7 +1,7 @@
 @use "../index.scss" as *;
 
 .error-page {
-  height: 50vh;
+  height: 70vh;
   @include alignCenter;
   justify-content: center;
   text-align: center;
@@ -21,6 +21,7 @@
     color: getClr($colors, "primary", 800);
     z-index: -100;
     opacity: 0.6;
+    font-family: $ff-red-rose;
   }
 
   .error_container {
@@ -34,6 +35,7 @@
     .subheading {
       font-size: 1.125rem;
       margin-block: 1rem 2.5rem;
+      color: getClr($colors, "primary", 200);
     }
 
     .back_btn {

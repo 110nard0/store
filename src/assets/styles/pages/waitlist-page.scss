@@ -106,7 +106,7 @@
           color: getClr($colors, "primary", 0);
           border-radius: 25rem;
           background: getClr($colors, "primary", 800);
-          animation: pop 0.8s ease-in-out;
+          animation: pop 0.8s ease-in-out infinite;
 
           svg {
             font-size: 2.5em;

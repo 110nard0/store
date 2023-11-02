@@ -48,6 +48,11 @@
   }
   @include mobile {
     padding-top: 0.1rem;
+
+    .success-container {
+      margin-bottom: 1rem;
+    }
+
     .reset-page_container {
       margin-bottom: 1rem;
       .left-container {
