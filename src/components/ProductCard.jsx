@@ -1,9 +1,8 @@
 import React from "react";
 
-import "../assets/styles/component/ProductCard.scss";
-// import image1 from "../assets/styles/images/images1.jpeg";
-import image1 from "../assets/images/image1.jpg";
-import image2 from "../assets/images/image2.jpg";
+import "@asset/component/ProductCard.scss";
+import image1 from "@images/image1.jpg";
+import image2 from "@images/image2.jpg";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ id }) => {
@@ -16,8 +15,8 @@ const ProductCard = ({ id }) => {
         </div>
 
         <p className="category">ATLAS COLLECTION</p>
-        <p className="product-card_title">Black Sweatshirt</p>
-        <p className="product-card_price">₦60 000</p>
+        <h4 className="product-card_title">Black Sweatshirt</h4>
+        <h4 className="product-card_price">₦60 000</h4>
       </Link>
     </article>
   );

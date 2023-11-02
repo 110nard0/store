@@ -1,23 +1,17 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-import "../assets/styles/component/RadioBtn.scss";
+import "@asset/component/RadioBtn.scss";
 
-const RadioBtn = ({ title, name, value, changeHandler, checked }) => {
+const RadioBtn = forwardRef((props, ref) => {
   return (
     <div className="radio-group">
       <label>
-        {title}
-        <input
-          type="radio"
-          name={name}
-          value={value}
-          onChange={changeHandler}
-          checked={checked}
-        />
+        {props.title}
+        <input type="radio" {...props} ref={ref} />
         <span></span>
       </label>
     </div>
   );
-};
+});
 
 export default RadioBtn;

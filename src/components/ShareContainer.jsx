@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import "../assets/styles/component/ShareContainer.scss";
+import "@asset/component/ShareContainer.scss";
 
 import { BsWhatsapp, BsCheck2 } from "react-icons/bs";
 import { RiTwitterXLine } from "react-icons/ri";
 import { FaFacebookF } from "react-icons/fa";
-// import { FiInstagram } from "react-icons/fi";
 import { IoMdLink } from "react-icons/io";
 
 import {
@@ -32,7 +31,7 @@ const ShareContainer = () => {
   };
 
   return (
-    <div className="icons">
+    <div className="share_icons">
       <FacebookShareButton url={url}>
         <div className="icon">
           <FaFacebookF />

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
-import "../assets/styles/component/Filter.scss";
+import "@asset/component/Filter.scss";
 
 import { BsFilter, BsArrowUpRight } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
-import useClickOutiside from "../hooks/use-clickOutside";
+import useClickOutiside from "../hooks/use-clickOutside.js";
 import { Link } from "react-router-dom";
-import CheckBox from "./CheckBox";
+import CheckBox from "./CheckBox.jsx";
 
 const clothType = ["Tops", "Bottoms", "Hats"];
 const sizes = [
@@ -45,86 +45,96 @@ const Filter = () => {
     }
   };
 
-  return (
-    <div className="filter" ref={ref}>
-      {showDropDown ? (
-        <button
-          type="button"
-          className="filter-dropdown_btn"
-          onClick={() => setShowDropDown(!showDropDown)}
-        >
-          Close <MdClose size={20} />
-        </button>
-      ) : (
-        <button
-          type="button"
-          className="filter-dropdown_btn"
-          onClick={() => setShowDropDown(!showDropDown)}
-        >
-          Filter <BsFilter size={20} />
-        </button>
-      )}
+  useMemo(() => {
+    showDropDown
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [showDropDown]);
 
-      {showDropDown && (
-        <div className="filter-dropdown">
-          <div className="filter_options">
-            <div className="heading">
-              <p>Clothing type</p>
+  return (
+    <>
+      <div className="filter" ref={ref}>
+        {showDropDown ? (
+          <button
+            type="button"
+            className="filter-dropdown_btn"
+            onClick={() => setShowDropDown(!showDropDown)}
+          >
+            Close <MdClose size={20} />
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="filter-dropdown_btn"
+            onClick={() => setShowDropDown(!showDropDown)}
+          >
+            Filter <BsFilter size={20} />
+          </button>
+        )}
+
+        {showDropDown && (
+          <div className="filter-dropdown">
+            <div className="filter_options">
+              <div className="heading">
+                <p>Clothing type</p>
+              </div>
+              <div className="filter_btns">
+                {clothType.map((cloth) => (
+                  <CheckBox
+                    name="cloth-type"
+                    value={cloth}
+                    title={cloth}
+                    key={cloth}
+                    onchange={filterHandler}
+                    checked={filters["cloth-type"].includes(cloth)}
+                  />
+                ))}
+              </div>
             </div>
-            <div className="filter_btns">
-              {clothType.map((cloth) => (
-                <CheckBox
-                  name="cloth-type"
-                  value={cloth}
-                  title={cloth}
-                  key={cloth}
-                  onchange={filterHandler}
-                  checked={filters["cloth-type"].includes(cloth)}
-                />
-              ))}
+            <div className="filter_options">
+              <div className="heading">
+                <p>Sizes</p>
+                <button type="button" className="sizes-link">
+                  <Link to="/features#sizing">View our size guide</Link>
+                  <BsArrowUpRight />
+                </button>
+              </div>
+              <div className="filter_btns">
+                {sizes.map((size) => (
+                  <CheckBox
+                    name="sizes"
+                    value={size.value}
+                    title={size.title}
+                    key={size.title}
+                    onchange={filterHandler}
+                    checked={filters["sizes"].includes(size.value)}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="filter_options">
+              <div className="heading">
+                <p>Colour</p>
+              </div>
+              <div className="filter_btns">
+                {colours.map((colour) => (
+                  <CheckBox
+                    name="colour"
+                    value={colour}
+                    title={colour}
+                    key={colour}
+                    onchange={filterHandler}
+                    checked={filters["colour"].includes(colour)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-          <div className="filter_options">
-            <div className="heading">
-              <p>Sizes</p>
-              <button type="button" className="sizes-link">
-                <Link to="/features">View our size guide</Link>
-                <BsArrowUpRight />
-              </button>
-            </div>
-            <div className="filter_btns">
-              {sizes.map((size) => (
-                <CheckBox
-                  name="sizes"
-                  value={size.value}
-                  title={size.title}
-                  key={size.title}
-                  onchange={filterHandler}
-                  checked={filters["sizes"].includes(size.value)}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="filter_options">
-            <div className="heading">
-              <p>Colour</p>
-            </div>
-            <div className="filter_btns">
-              {colours.map((colour) => (
-                <CheckBox
-                  name="colour"
-                  value={colour}
-                  title={colour}
-                  key={colour}
-                  onchange={filterHandler}
-                  checked={filters["colour"].includes(colour)}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+
+      {showDropDown && <div className="backdrop" />}
+    </>
   );
 };
 

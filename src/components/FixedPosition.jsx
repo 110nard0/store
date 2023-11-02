@@ -2,9 +2,9 @@ import React from "react";
 
 const style = {
   maxWidth: "80rem",
-  width: "90%",
+  width: "93%",
   position: "fixed",
-  top: "9rem",
+  top: "7.5rem",
   left: "50%",
   transform: "translateX(-50%)",
   zIndex: 50,
