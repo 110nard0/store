@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../assets/styles/pages/LandingPage.scss";
+import "@asset/pages/LandingPage.scss";
 
 const LandingPage = () => {
   return <section className="landing-page"></section>;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../assets/styles/pages/About.scss";
+import "@asset/pages/About.scss";
 
 const About = () => {
   return (

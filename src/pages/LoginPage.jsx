@@ -1,33 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import "../assets/styles/pages/LoginPage.scss";
+import "@asset/pages/LoginPage.scss";
 import { BsArrowUpRight, BsEye, BsGoogle, BsEyeSlash } from "react-icons/bs";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "../schemas";
-import { useNavigate } from "react-router";
+import { loginSchema } from "@schemas";
 import { Link } from "react-router-dom";
+import InputGroup from "@components/InputGroup";
+import { login } from "../services";
 
 const LoginPage = () => {
-  // -------------------------NAVIGATION-----------------------------------------
-
-  const navigate = useNavigate();
-
-  // -------------------------SHOW AND HIDE PASSWORD-----------------------------------------
+  // HDR:-------------------------SHOW AND HIDE PASSWORD-----------------------------------------
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState(null);
 
-  // -------------------------SUBMISSION OF THE FORM DATA-----------------------------------------
-  const submitHandler = (formData) => {
-    // console.log(formData);
-    navigate("/");
+  // HDR:-------------------------SUBMISSION OF THE FORM DATA-----------------------------------------
+  const submitHandler = async (formData) => {
+    try {
+      const res = await login(formData);
+      setLoginError("");
+      if (res.status === 200) window.location = "/";
+    } catch (err) {
+      if (err.response && err.response.status === 401) {
+        setLoginError(err.response.data.detail);
+      }
+    }
   };
 
-  // -------------------------FORM VALIDATION-----------------------------------------
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoginError("");
+    }, 5000);
+    () => clearTimeout(timer);
+  }, [loginError]);
+
+  // HDR:-------------------------FORM VALIDATION-----------------------------------------
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     reset,
   } = useForm({
     resolver: zodResolver(loginSchema),
@@ -37,22 +49,22 @@ const LoginPage = () => {
     },
   });
 
-  // ================================================================================================
+  //HDR: ================================================================================================
   return (
     <section className="login-page">
       {/* -------------------LEFT CONTAINER---------------------------- */}
       <div className="left-container">
         <div className="left-container_top">
-          <p className="left-container_top__heading">Log into your account</p>
+          <h2 className="left-container_top__heading">Log into your account</h2>
         </div>
         <div className="left-container_bottom">
-          <p>
+          <h4>
             Don't have an account?
             <button type="button" className="register_link">
               <Link to="/register">Create an account </Link>
               <BsArrowUpRight />
             </button>
-          </p>
+          </h4>
         </div>
       </div>
 
@@ -63,22 +75,18 @@ const LoginPage = () => {
           className="right-container_form"
           onSubmit={handleSubmit(submitHandler)}
         >
-          <div className={`input-group ${errors.email && "error"}`}>
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              autoComplete="on"
-              placeholder="Enter your email address"
-              {...register("email")}
-            />
-            {errors.email && (
-              <span>
-                <BiErrorCircle /> {errors.email?.message}
-              </span>
-            )}
-          </div>
+          {loginError && <em className="form_error">{loginError}</em>}
+          <InputGroup
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="on"
+            placeholder="Enter your email address"
+            title="Email Address"
+            error={errors.email}
+            errormessage={errors.email?.message}
+            {...register("email")}
+          />
 
           <div className={`input-group ${errors.password && "error"}`}>
             <label htmlFor="password">Password</label>
@@ -105,7 +113,7 @@ const LoginPage = () => {
           </div>
 
           <button type="button" className="forgot_btn">
-            <Link to="/forgot-password">Forget password?</Link>
+            <Link to="/forgot-password">Forgot password?</Link>
           </button>
 
           <div className="right-container_form__submit--btns">

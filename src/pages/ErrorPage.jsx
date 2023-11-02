@@ -1,16 +1,16 @@
 import React from "react";
 
-import "../assets/styles/pages/ErrorPage.scss";
+import "@asset/pages/ErrorPage.scss";
 import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
     <section className="error-page">
       <div className="error_container">
-        <p className="heading">Page not found</p>
-        <p className="subheading">
+        <h3 className="heading">Page not found</h3>
+        <h4 className="subheading">
           Oops! Sorry but we could not find the page you are looking for.
-        </p>
+        </h4>
 
         <Link to="/" className="back_btn">
           Back to home
