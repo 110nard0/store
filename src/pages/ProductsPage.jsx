@@ -1,24 +1,33 @@
 import React from "react";
 
-import "../assets/styles/pages/ProductsPage.scss";
-import ProductCard from "../components/ProductCard";
-import Filter from "../components/Filter";
-import MetaTag from "../components/MetaTag";
-import FixedPosition from "../components/FixedPosition";
+import "@asset/pages/ProductsPage.scss";
+import ProductCard from "@components/ProductCard.jsx";
+import Filter from "@components/Filter.jsx";
+import MetaTag from "@components/MetaTag.jsx";
+import ProductCardSkeleton from "@components/ProductCardSkeleton";
 
 const products = Array.from({ length: 9 });
+
+const isLoading = false;
+
+HINT: "Use a custom useData hook to destructure the data, error and loading state, use the destructure ";
+
+TODO: "Use the destruture value instead";
 
 const ProductsPage = () => {
   return (
     <section className="products">
-      <FixedPosition className="products_header">
-        <p className="products_header__heading">All products</p>
+      <div className="products_header">
+        <h2 className="products_header__heading">All products</h2>
         <div className="products_filter">
           <Filter />
         </div>
-      </FixedPosition>
+      </div>
 
       <div className="products_display">
+        {isLoading &&
+          products.map((_, i) => <ProductCardSkeleton key={i + "Skeletion"} />)}
+
         {products.map((_, i) => (
           <ProductCard key={i} id={i + 1} />
         ))}

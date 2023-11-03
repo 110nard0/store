@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-import "../assets/styles/pages/ForgotPassword.scss";
+import "@asset/pages/ForgotPassword.scss";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { forgotSchema } from "../schemas";
+import { forgotSchema } from "@schemas";
 import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
@@ -51,11 +51,11 @@ const ForgotPassword = () => {
         {/* -------------------LEFT CONTAINER---------------------------- */}
         <div className="left-container">
           <div className="left-container_top">
-            <p className="left-container_top__heading">Reset your password</p>
-            <p className="left-container_top__subheading">
+            <h1 className="left-container_top__heading">Reset your password</h1>
+            <h4 className="left-container_top__subheading">
               Enter your email address in the field provided to reset your
               password
-            </p>
+            </h4>
           </div>
         </div>
 
@@ -96,13 +96,13 @@ const ForgotPassword = () => {
   if (passwordSent)
     return (
       <section className="sent-container">
-        <p className="heading">Reset Password</p>
-        <p className="sub_heading">
+        <h2 className="heading">Reset Password</h2>
+        <h4 className="sub_heading">
           {/* We sent a link to {email.substring(0, email.length - 7)}***.com. */}
           We sent a link to {emailSplitted}***
           {email.substring(email.length - 9)}. Please click the link in your
           email to reset your password.
-        </p>
+        </h4>
         <Link to="/login" className="login_btn">
           Back to log in
         </Link>
