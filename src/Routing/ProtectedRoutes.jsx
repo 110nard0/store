@@ -1,12 +1,24 @@
 import React from "react";
-import { Navigate } from "react-router";
-import Layout from "./Layout";
-import Footer from "../components/Footer";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { authContext } from "@store/context";
 
-const getUser = true;
+const ProtectedRoutes = ({ children, accessBy = "authenticated" }) => {
+  const { user } = authContext();
+  const location = useLocation();
 
-const ProtectedRoutes = () => {
-  return getUser ? <Layout /> : <Navigate to={"/waitlist"} />;
+  if (accessBy === "unauthenticated") {
+    if (!user) {
+      return children;
+    } else {
+      return (window.location = "/");
+    }
+  } else {
+    if (user) {
+      return <Outlet />;
+    }
+  }
+
+  return <Navigate to={"/login"} state={{ from: location }} replace />;
 };
 
 export default ProtectedRoutes;
