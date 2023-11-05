@@ -17,8 +17,8 @@ import "swiper/scss/pagination";
 import "swiper/scss/navigation";
 import "swiper/css/scrollbar";
 
-import image1 from "../../assets/images/image1.jpg";
-import image2 from "../../assets/images/image2.jpg";
+import image1 from "@images/image1.jpg";
+import image2 from "@images/image2.jpg";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 const SingleProductLeft = () => {
