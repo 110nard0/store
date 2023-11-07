@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import Routing from "./Routing/Routing";
+import Routing from "@routing/Routing.jsx";
 import jwtDecode from "jwt-decode";
-import ScrollToTop from "./Routing/scrollToTop";
-import Context from "./store/context";
-import { cartData } from "./data";
+import ScrollToTop from "@routing/scrollToTop.jsx";
+import Context from "@store/context";
+import { ConfigProvider, App } from "antd";
+import { token } from "./data/antConfig";
 
-function App() {
+function MyApp() {
   //   ===================== STATES ==========================
   const [user, setUser] = useState(null);
-  const [cart, setCart] = useState(cartData);
 
   //   ===================== CONFIGURATIONS AND SETTINGS ==========================
   useEffect(() => {
@@ -25,35 +25,23 @@ function App() {
     } catch (error) {}
   }, []);
 
-  const removeFromCart = (id) => {
-    const oldCart = [...cart];
-    const newCart = oldCart.filter((item) => item.id !== id);
-    setCart(newCart);
-  };
-
-  const updateCart = (type, id) => {
-    const updatedCart = [...cart];
-
-    const productIdx = updatedCart.findIndex((item) => item.id === id);
-
-    if (type === "increase") {
-      updatedCart[productIdx].quantity += 1;
-      setCart(updatedCart);
-    } else {
-      updatedCart[productIdx].quantity -= 1;
-      setCart(updatedCart);
-    }
-  };
-
   return (
-    <BrowserRouter>
-      <Context>
-        <ScrollToTop>
-          <Routing />
-        </ScrollToTop>
-      </Context>
-    </BrowserRouter>
+    <ConfigProvider
+      theme={{
+        token: token,
+      }}
+    >
+      <App>
+        <BrowserRouter>
+          <Context>
+            <ScrollToTop>
+              <Routing />
+            </ScrollToTop>
+          </Context>
+        </BrowserRouter>
+      </App>
+    </ConfigProvider>
   );
 }
 
-export default App;
+export default MyApp;
