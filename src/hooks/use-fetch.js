@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import apiClient from "../utils/api-client";
+import apiClient from "@utils/api-client";
 
 const useFetch = (urlPath) => {
   const [data, setData] = useState(null);
