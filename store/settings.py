@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 from decouple import config
 from pathlib import Path
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +32,7 @@ DEBUG = False
 # ALLOWED_HOSTS = ['trgst.com', 'www.trgst.com']
 ALLOWED_HOSTS = [
     # '127.0.0.1',
-	'trgst.com',
+    'trgst.com',
     'trgst-product-app.onrender.com',
 ]
 
@@ -204,7 +203,7 @@ SITE_ID = 1
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-	"TOKEN_OBTAIN_SERIALIZER": 'api.serializers.CustomTokenObtainPairSerializer',
+    "TOKEN_OBTAIN_SERIALIZER": 'api.serializers.CustomTokenObtainPairSerializer',
 }
 
 
@@ -251,16 +250,16 @@ CORS_ALLOW_HEADERS = [
 
 # Only communicate with site using HTTPS
 
-SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_SECONDS = 31536000
 
 # Redirect all requests to HTTPS if they come in as HTTP
 
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True
 
 # Send Cookies over non-secure connections
 
-SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 
 # Send CSRF token over non-secure connections
 
-CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
