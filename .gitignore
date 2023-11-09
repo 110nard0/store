@@ -28,7 +28,6 @@ dist-ssr
 .env
 *db*
 
-
 # Django files
 */__pycache__/*
 *.pyc
