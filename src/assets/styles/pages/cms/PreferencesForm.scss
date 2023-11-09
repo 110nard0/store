@@ -1,0 +1,9 @@
+@use "./SizesForm.scss" as *;
+
+.form {
+  &_inputs {
+    > div {
+      width: 50%;
+    }
+  }
+}

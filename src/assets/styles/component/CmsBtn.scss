@@ -1,0 +1,16 @@
+@use "../globals/mixins" as *;
+
+.add_button {
+  @include btnCmsPrimary;
+  text-transform: capitalize;
+}
+
+.back_button {
+  @include btnCmsNeutral;
+  text-transform: capitalize;
+}
+
+.neutral_button {
+  @include btnCmsSecondary;
+  text-transform: capitalize;
+}

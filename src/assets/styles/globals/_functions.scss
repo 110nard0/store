@@ -1,0 +1,15 @@
+@use "sass:math";
+
+// GET ITEM IN NESTED LIST, JUST TWO STEPS DEEP
+@function getClr($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+// CONVERTS PIXELS TO REM
+
+@function rem($pixel) {
+  @return math.div($pixel, 16) + rem;
+}

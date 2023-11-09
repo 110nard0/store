@@ -1,0 +1,75 @@
+@use "../index" as *;
+
+.cart_item:not(:first-of-type) {
+  border-top: rem(1) solid getClr($colors, "primary", 600);
+}
+
+.cart_item {
+  padding-block: 1.75rem;
+  display: flex;
+  gap: 1rem;
+
+  .product_image {
+    width: 4.222rem;
+    height: 5.625rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .product_detail {
+    color: getClr($colors, "primary", 50);
+    display: flex;
+    flex-direction: column;
+    &__name {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+      font-weight: 400;
+    }
+    &__price {
+      font-size: 1.125rem;
+      font-weight: 400;
+    }
+
+    &__preference {
+      font-size: 0.875rem;
+      color: getClr($colors, "primary", 400);
+      margin-top: auto;
+      font-weight: 400;
+    }
+  }
+
+  .product_cta {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .delete_btn {
+      @include btnNeutral;
+      color: getClr($colors, "primary", 500);
+      transition: 0.5s ease;
+      > svg {
+        margin-left: auto;
+      }
+    }
+  }
+
+  @include mobile {
+    gap: 0.75rem;
+
+    .product_detail {
+      &__name {
+        font-size: 1.125rem;
+      }
+
+      &__price {
+        font-size: 1rem;
+      }
+
+      &__preference {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}

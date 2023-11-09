@@ -1,0 +1,123 @@
+@use "../index.scss" as *;
+
+// NOTE: Reuse for light mode too
+.dropdown_container {
+  position: relative;
+  .cms_select {
+    margin-block: 0.5rem;
+    width: 100%;
+    padding: 1rem 1.75rem;
+    text-align: left;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 0.375rem;
+    background: getClr($colors, "neutral", 800);
+    border: rem(1) solid transparent;
+    color: getClr($colors, "neutral", 300);
+    transition: all 0.2s ease;
+    @include alignCenter;
+    justify-content: space-between;
+    cursor: pointer;
+
+    span {
+      color: getClr($colors, "neutral", 600);
+      font-size: 1rem;
+    }
+
+    &:hover {
+      background: getClr($colors, "neutral", 700);
+      span {
+        color: getClr($colors, "neutral", 500);
+        font-size: 1rem;
+      }
+    }
+
+    .expand_icon {
+      font-size: 1.5rem;
+    }
+
+    &.open {
+      //   background: transparent;
+      background: getClr($colors, "neutral", 700);
+      border-color: getClr($colors, "neutral", 700);
+      span {
+        color: getClr($colors, "neutral", 500);
+        font-size: 1rem;
+      }
+
+      .expand_icon {
+        transform: rotate(180deg);
+      }
+
+      &:hover {
+        // background: getClr($colors, "neutral", 900);
+      }
+    }
+
+    &.error {
+      border-color: getClr($colors, "error", 500);
+    }
+  }
+
+  .select_options {
+    padding: 1rem;
+    border-radius: 0.375rem;
+    border: 1.5px solid getClr($colors, "neutral", 600);
+    background: getClr($colors, "neutral", 800);
+    max-height: 15rem;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+    display: none;
+
+    &.open {
+      animation: growDown 300ms ease forwards;
+      transform-origin: top;
+      display: block;
+
+      @keyframes growDown {
+        0% {
+          transform: translate(0, 0);
+        }
+        40% {
+          transform: translate(0, 0.5%);
+        }
+        80% {
+          transform: translate(0, 1%);
+        }
+        100% {
+          transform: translate(0, 1%);
+        }
+      }
+    }
+  }
+
+  .error_span:not(.eye-icon) {
+    @include alignCenter;
+    color: getClr($colors, "error", 500);
+    gap: 0.5rem;
+  }
+
+  &.light {
+    .cms_select {
+      background: getClr($colors, "neutral", 100);
+      color: getClr($colors, "primary", 900);
+
+      &:hover {
+        background: getClr($colors, "neutral", 200);
+      }
+
+      &.open {
+        border-color: transparent;
+        background: getClr($colors, "neutral", 200);
+      }
+    }
+
+    .select_options {
+      border: none;
+      background: rgb(108, 108, 108);
+    }
+  }
+}

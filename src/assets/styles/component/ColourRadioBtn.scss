@@ -1,0 +1,60 @@
+@use "../index.scss" as *;
+
+.radio-item {
+  user-select: none;
+
+  label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding-inline-start: rem(35);
+
+    input {
+      display: none;
+
+      &:checked ~ .radio_btn {
+        border-color: getClr($colors, "primary", 50);
+
+        &::after {
+          transform: translate(-50%, -50%) scale(0.8);
+        }
+      }
+    }
+
+    .radio_btn {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: rem(2) solid var(--clr);
+      border-radius: 50%;
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scale(1);
+
+      &::after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: var(--clr);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    &:hover .radio_btn {
+      transform: translateY(-50%) scale(1.05);
+    }
+    .colour_tag {
+      color: var(--txt);
+      position: absolute;
+      left: 2rem;
+      font-size: 1rem;
+    }
+  }
+}

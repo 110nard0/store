@@ -1,0 +1,238 @@
+@use "../index.scss" as *;
+
+.single_product-page {
+  .back_container {
+    .prev_btn {
+      @include btnSecondary;
+      padding: 0.5em 1em;
+    }
+  }
+
+  .product_display {
+    display: flex;
+    row-gap: 1.5rem;
+    column-gap: 1rem;
+    width: 100%;
+    padding-bottom: 4.5rem;
+    border-bottom: 1px solid getClr($colors, "primary", 600);
+    margin-top: 10.5rem;
+
+    &_left {
+      width: 58%;
+      .image_carousel {
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 1.2rem;
+
+        .image_preview img {
+          width: 22.88rem;
+          height: 29.38rem;
+          object-fit: cover;
+        }
+      }
+
+      .image_pagination {
+        @include alignCenter;
+        justify-content: space-between;
+
+        .paginators {
+          width: auto;
+
+          --swiper-pagination-color: rgba(255, 255, 255, 0.5);
+          --swiper-pagination-bullet-size: 0.5rem;
+          --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.4);
+          --swiper-pagination-bullet-horizontal-gap: 0.4rem;
+        }
+
+        .pagination_btn {
+          width: 2.25rem;
+          height: 2.25rem;
+          @include btnNeutral;
+          @include alignCenter;
+          justify-content: center;
+        }
+      }
+    }
+
+    &_right {
+      padding-inline: 1.25rem;
+      width: 42%;
+
+      .collection {
+        font-size: 0.75rem;
+        color: getClr($colors, "primary", 500);
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+
+      .item {
+        @include alignCenter;
+        justify-content: space-between;
+        color: getClr($colors, "primary", 50);
+        text-transform: capitalize;
+
+        &_name {
+          font-size: 1.75rem;
+        }
+        &_price {
+          font-size: 1.5rem;
+        }
+      }
+      .color_btns {
+        height: 2rem;
+        @include alignCenter;
+        margin-block: 1.25rem;
+      }
+
+      .size_container {
+        @include selectGroup;
+      }
+
+      .cta_btns {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-block: 1.25rem 1.5rem;
+
+        .btn-sec {
+          @include btnSecondary;
+          width: 100%;
+        }
+
+        .btn-pri {
+          @include btnPrimary;
+          width: 100%;
+        }
+      }
+
+      .accordion {
+        user-select: none;
+        &_title {
+          padding-block: 1.25rem;
+          border-top: rem(1) solid getClr($colors, "primary", 700);
+          color: getClr($colors, "primary", 300);
+          @include alignCenter;
+          justify-content: space-between;
+
+          cursor: pointer;
+          transition: 0.3s ease;
+
+          &:hover,
+          &.open {
+            color: getClr($colors, "primary", 0);
+          }
+
+          &.open svg {
+            transform: rotate(180deg);
+          }
+        }
+
+        &_text {
+          font-size: 0.875rem;
+          line-height: 1.5rem;
+          margin-bottom: 1rem;
+          font-weight: 400;
+
+          .size_link {
+            text-decoration: underline;
+            text-underline-offset: 0.2rem;
+
+            &:hover {
+              color: getClr($colors, "primary", 50);
+            }
+          }
+        }
+      }
+
+      .share_container {
+        padding-top: 1.25rem;
+        border-top: rem(1) solid getClr($colors, "primary", 700);
+        position: relative;
+
+        .share_btn {
+          @include btnNeutral;
+        }
+
+        .share_modal {
+          width: 60%;
+          position: absolute;
+          top: 5%;
+          right: 0;
+          padding-block: rem(10);
+          background: getClr($colors, "primary", 900);
+        }
+      }
+    }
+  }
+
+  .recommend_container {
+    margin-top: 2.25rem;
+    width: 100%;
+
+    &__heading {
+      color: getClr($colors, "primary", 50);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .recommend_items {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @include mobile {
+    .back_container {
+      left: 5%;
+      top: 5.3rem !important;
+    }
+    .product_display {
+      margin-top: 8.4rem;
+      flex-direction: column;
+
+      > div {
+        width: 100%;
+      }
+
+      &_left {
+        .image_carousel {
+          .image_preview {
+            .swiper-slide {
+              width: 18.68rem;
+              height: 26.56rem;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+      }
+
+      &_right {
+        padding-inline: unset;
+
+        .item {
+          flex-direction: column;
+          row-gap: 0.25rem;
+          align-items: start;
+
+          &_name {
+            font-size: 1.5rem;
+          }
+
+          &_price {
+            font-size: 1.25rem;
+          }
+        }
+      }
+    }
+
+    .recommend_container .recommend_items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
