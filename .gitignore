@@ -31,3 +31,4 @@ dist-ssr
 # Django files
 */__pycache__/*
 *.pyc
+static/
