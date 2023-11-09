@@ -142,4 +142,3 @@ If you'd like to contribute to this project, please follow these steps:
 The Django framework is open-source software licensed under the [BSD3 license](https://opensource.org/license/bsd-3-clause/).
 
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
->>>>>>> dev
