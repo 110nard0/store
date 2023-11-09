@@ -1,0 +1,79 @@
+@use "../index.scss" as *;
+
+.filter {
+  position: relative;
+  z-index: 10;
+
+  &-dropdown_btn {
+    @include btnSecondary;
+    padding: 0.5em 1em;
+  }
+
+  &-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 1rem);
+    width: 30.5rem;
+    border: rem(1.5) solid getClr($colors, "primary", 50);
+    background: getClr($colors, "primary", 900);
+    padding: 1.75em 1.5em;
+
+    .filter_options {
+      .heading {
+        @include alignCenter;
+        justify-content: space-between;
+
+        p {
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          color: getClr($colors, "primary", 200);
+          letter-spacing: 0.0375rem;
+        }
+
+        .sizes-link {
+          @include btnNeutral;
+        }
+      }
+      .filter_btns {
+        @include alignCenter;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        column-gap: 2.5rem;
+        row-gap: 1rem;
+      }
+
+      &:not(:last-of-type) {
+        border-bottom: rem(1) solid getClr($colors, "primary", 600);
+        padding-bottom: 1.5rem;
+      }
+
+      &:not(:first-of-type) {
+        padding-top: 1.5rem;
+      }
+    }
+  }
+
+  @include mobile {
+    &-dropdown_btn {
+      height: 2.2rem;
+      // padding: 0.5em 1em;
+    }
+
+    &-dropdown {
+      max-width: 90vw;
+
+      .filter_options .filter_btns {
+        row-gap: 1.25rem;
+      }
+    }
+  }
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  opacity: 0.7;
+  position: fixed;
+  inset: 0;
+}

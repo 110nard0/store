@@ -1,0 +1,32 @@
+@use "../index.scss" as *;
+
+.cms_header {
+  @include alignCenter;
+  padding: 1rem 1.5rem;
+  justify-content: space-between;
+  border-bottom: rem(1) solid getClr($colors, "neutral", 700);
+
+  .left {
+    .heading {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: getClr($colors, "neutral", 100);
+    }
+
+    .subheading {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: getClr($colors, "neutral", 500);
+    }
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+
+    .left {
+      align-self: flex-start;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@use "../index" as *;
+
+.checkout {
+  .back_container {
+    .back_btn {
+      @include btnSecondary;
+      padding: 0.5em 1em;
+    }
+  }
+
+  .checkout_container {
+    margin-top: 10.5rem;
+    @include twoGridContainer(2fr 1.5fr);
+
+    > div {
+      padding: 2.5rem !important;
+    }
+
+    .right_container {
+      .right_heading {
+        padding-bottom: 1.75rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.04375rem;
+        color: getClr($colors, "primary", 0);
+        border-bottom: rem(1) solid getClr($colors, "primary", 600);
+      }
+
+      .orders {
+        height: 28rem;
+        overflow-y: auto;
+        border-bottom: rem(1) solid getClr($colors, "primary", 600);
+        .cart_item {
+          border: none;
+        }
+      }
+
+      .subtotal {
+        padding-block: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+        border-bottom: rem(1) solid getClr($colors, "primary", 600);
+        .product_cost {
+          @include alignCenter;
+          justify-content: space-between;
+
+          &_title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.04375rem;
+            color: getClr($colors, "primary", 200);
+            text-transform: uppercase;
+          }
+
+          &_price {
+            font-size: 1.25rem;
+            font-style: normal;
+            font-weight: 400;
+            color: getClr($colors, "primary", 50);
+          }
+        }
+      }
+
+      .product_total {
+        @extend .subtotal;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: none;
+        user-select: none !important;
+      }
+
+      .checkout_btn {
+        @include btnPrimary;
+        width: 100%;
+      }
+    }
+  }
+
+  @include mobile {
+    .back_container {
+      left: 5%;
+      top: 5.6rem !important;
+      .back_btn {
+        padding: 0.3em 0.8em;
+      }
+    }
+    .checkout_container {
+      margin-top: 8.3rem;
+      > div {
+        padding: 1.25rem !important;
+      }
+
+      .right_container {
+        .right_heading {
+          font-size: 0.75rem;
+          font-weight: 600;
+          letter-spacing: 0.0375rem;
+          padding-bottom: 1.5rem;
+        }
+
+        .orders {
+        }
+
+        .subtotal {
+          gap: 1.5rem;
+          padding-block: 1.5rem;
+
+          .product_cost {
+            &_title {
+              font-size: 0.75rem;
+            }
+
+            &_price {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+@use "../index.scss" as *;
+
+.navbar {
+  max-width: 80rem;
+  width: 93%;
+  background: getClr($colors, "primary", 900);
+  border: rem(1.5) solid getClr($colors, "primary", 200);
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  z-index: 100;
+  transition: all 2s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+
+  &-nav {
+    @include alignCenter;
+    padding: 1.25rem 2.5rem;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+
+    > * a {
+      display: inline-block;
+      color: getClr($colors, "primary", 200);
+    }
+
+    .navbar-nav_bag {
+      color: getClr($colors, "primary", 200);
+    }
+
+    &_logo {
+      max-width: 14.7455rem;
+      svg {
+        width: 100%;
+      }
+    }
+
+    &_links {
+      @include alignCenter;
+      justify-content: space-between;
+
+      > li {
+        @include btnNeutral;
+        margin-inline: 2rem;
+      }
+    }
+
+    > a:not(.navbar-nav_logo),
+    .navbar-nav_menu-icon {
+      display: none;
+    }
+
+    @include mobile {
+      padding: 0.75rem 1rem;
+
+      &_logo {
+        max-width: 7.4rem;
+        svg {
+          width: 100%;
+        }
+      }
+
+      &_links {
+        position: absolute;
+        width: 100%;
+        top: calc(100% + 1rem);
+        left: 0;
+        flex-direction: column;
+        row-gap: 2.5rem;
+        padding: 2.5rem;
+        background: getClr($colors, "primary", 900);
+        border: rem(1.5) solid getClr($colors, "primary", 200);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+
+        &.show-menu {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      > a:not(.navbar-nav_logo),
+      .navbar-nav_menu-icon {
+        display: inline-block;
+      }
+
+      &_bag {
+        margin-left: auto;
+        margin-right: 1.75rem;
+      }
+    }
+  }
+
+  @include mobile {
+    top: 1rem;
+  }
+
+  .backdrop {
+    width: 250vw;
+    height: 250vh;
+    position: fixed;
+    background: getClr($colors, "primary", 900);
+    top: -100%;
+    left: -20%;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+
+    &.show-backdrop {
+      opacity: 0.8;
+      visibility: visible;
+    }
+  }
+
+  &.hide_nav {
+    transform: translate(-50%, -52%) scale(0.8, 0.8);
+    transition: transform 0.8s ease;
+
+    @include mobile {
+      transform: translate(-50%, -35%) scale(0.8);
+    }
+  }
+}

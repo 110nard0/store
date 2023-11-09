@@ -1,0 +1,19 @@
+@use "@asset/index.scss" as *;
+
+.form {
+  margin-top: 2.5rem;
+  margin-inline: 1.5rem;
+
+  &_inputs {
+    display: flex;
+    gap: 3rem;
+    > div {
+      width: 100%;
+      margin-bottom: 1.75rem;
+    }
+  }
+
+  &_btn {
+    @include btnCmsPrimary;
+  }
+}

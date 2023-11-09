@@ -1,0 +1,48 @@
+@use "../index.scss" as *;
+
+.products {
+  &_header {
+    @include alignCenter;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 5;
+
+    &__heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: getClr($colors, "primary", 0);
+      text-transform: uppercase;
+    }
+  }
+
+  &_display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    > .skeleton {
+      background: red !important;
+    }
+  }
+
+  @include tablet {
+    padding-top: 3.2rem;
+    margin-block: 2.3rem 1rem !important;
+    &_display {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include mobile {
+    &_header {
+      margin-bottom: 0.8rem;
+      &__heading {
+        font-size: 1.25rem;
+      }
+
+      .products_filter {
+        top: 8rem;
+        right: 5%;
+      }
+    }
+  }
+}

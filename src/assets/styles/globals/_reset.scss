@@ -1,0 +1,107 @@
+@use "./colours" as *;
+@use "./functions" as *;
+@use "./variables" as *;
+@use "./breakpoints" as *;
+@use "./mixins" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Red+Rose:wght@400;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: getClr($colors, "primary", 900);
+}
+
+body {
+  color: getClr($colors, "primary", 200);
+  font-family: $ff-be-viet;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-family: $ff-red-rose;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $ff-red-rose;
+  font-weight: 400;
+  color: getClr($colors, "primary", 50);
+}
+
+p {
+  font-size: 1rem;
+  color: getClr($colors, "primary", 200);
+}
+
+label {
+  font-family: $ff-red-rose;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+.label {
+  color: getClr($colors, "primary", 500);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form_error {
+  color: getClr($colors, "error", 500);
+  text-align: center;
+}
+
+.error_field {
+  color: getClr($colors, "error", 500);
+  @include alignCenter;
+  gap: 0.5rem;
+  font-family: $ff-red-rose;
+}
+
+.sucess {
+  color: getClr($colors, "success", 500);
+}
+.success_reg {
+  @include alignCenter;
+  justify-content: center;
+  gap: 0.5rem;
+  > a {
+    @include btnNeutral;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.3rem;
+    }
+  }
+}
+
+main > section:not(.landing-page, .waitlist_page) {
+  max-width: 80rem;
+  width: 93%;
+  margin-inline: auto;
+  margin-block: 7.7rem 3.69rem;
+
+  @include tablet {
+    margin-block: 5.3rem 1rem;
+  }
+}
+
+// main > .products {
+//   margin-block: 7.7rem 3.69rem;
+// }
